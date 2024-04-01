@@ -43,7 +43,15 @@
 // в конструкции switch - case в default не нужно писать break; так как это и так конец итерации
 
 // Продвинутый:
-// 1. 
+// 1.
+
+// Было такое решение 
+// let userName = 'пОлИнА';
+// let userSurname ='нАбЕрЕжНаЯ'
+// let correctedName = userName.toLowerCase().replace("п", "П"); // суть - привязаться не к конкретному символу, а к первому символу
+// let correctedSurname = userSurname.toLowerCase().replace("н", "Н") // суть - привязаться не к конкретному символу, а к первому символу
+// alert('Привет, ' + correctedName + '!');
+
 // Были разные подходы - сложные и не очень, с функциями и массиами но вот одно из наиболле лаконичных и соответсвивующих теме
 // let userName = "пОлИнА нАбЕрЕжНаЯ";
 // let correctName = userName.charAt(0).toUpperCase() + userName.slice(1).toLowerCase();
