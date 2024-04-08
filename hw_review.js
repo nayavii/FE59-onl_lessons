@@ -3,6 +3,16 @@
 // 1.
 // удалить оба ключа
 
+// хорошее решение
+// const cat = {
+//     name: 'Timofey',
+//     age: 5
+// }
+// for (const key in cat) {
+//     delete cat[key];
+// }
+// console.log(cat);
+
 // 2.
 // Хорошее альтернативное решение
 // const job = {
@@ -11,6 +21,22 @@
 // }
 // console.log(job.hasOwnProperty("oklad"));
 // console.log(job.hasOwnProperty("stavka"));
+
+
+
+// Рабочее но не очень правильное
+// const object = {
+//     city: 'Minsk',
+//     password: 1234,
+//   };
+  
+//   if(Object.keys(object).includes('password')){
+//     console.log('true')
+//     } else {
+//     console.log('false')
+//     }
+
+
 
 // 3.
 // const student = {
@@ -61,8 +87,58 @@
 // }
 // registrationValidator();
 
-7;
-// альтернативное решение через массивы
+
+
+// неправильное решение 1!!!!!!!!!!!!!
+
+// const login = prompt('Enter login');
+// const password = prompt('Enter password');
+
+// const entryInfo = {
+//     login,
+//     password,
+// }
+
+// const confirmLogin = prompt('Confirm your login');
+// const confirmPassword = prompt('Confirm your password');
+
+// const confirmInfo = {
+//     login,
+//     password,
+// }
+
+// function validation(entryInfo, confirmInfo) {
+//     if (Object.values(entryInfo) === Object.values(confirmInfo)) {
+//         alert('Welcome')
+//     } else {
+//         alert('Wrong. Try again')
+//     }
+// }
+
+// validation(entryInfo, confirmInfo);
+
+// здесь нужно было заюзать entryInfo.login === confirmInfo.login && entryInfo.password === confirmInfo.password или типа того
+
+
+
+
+// 7; Продвинутый 1
+// !!!!!!!!!!!!!!!!
+// НО!!!!!!!!!
+
+// здесь подразумевалось юзать объект
+
+// const texts = {
+//     0: 'ноль голов',
+//     1: 'один гол',
+//     2: 'два гола',
+//     ...
+// }
+// и потом получать текст по ключу
+
+
+
+// альтернативное решение через массивы (кто-то делал через switch/case)
 
 // function describeScore(score) {
 //   const goals = ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'];
@@ -82,7 +158,32 @@
 // const resultDescription = describeScore(score);
 // console.log(resultDescription);
 
-// 8;
+
+
+// Толковое решение 
+// const goals = {
+//     0: "ноль",
+//     1: "один",
+//     2: "два",
+//     3: "три",
+//     4: "четыре",
+//     5: "пять",
+//     6: "шесть",
+//     7: "семь",
+//     8: "восемь",
+//     9: "девять",
+// }
+
+// const score = '3:6';
+
+// const team_1 = Number(score.at(0));
+// const team_2 = Number(score.at(-1));
+
+// console.log(`Матч завершился со счетом ${goals[team_1]} ${goals[team_2]}`);
+
+
+
+// 8; Продвинутый 2
 // let student1 = {
 //   name: "Polina",
 //   age: 27,
@@ -98,3 +199,24 @@
 // } else {
 //   console.log("Объекты не равны");
 // }
+
+// 9; Продвинутый 2
+
+// Опциональная цепочка но можно и так
+
+// const animals = {
+//     cat: {
+//     name: 'Енчик',
+//     age: 3,
+//     },
+//     dog: {
+//     name: 'Орео',
+//     age: 2,
+//     }
+//   }
+  
+//   if (animals.bird) {
+//     console.log(animals.bird.name);
+//   } else {
+//     console.log("В объекте animals нет птицы.")
+//   }
