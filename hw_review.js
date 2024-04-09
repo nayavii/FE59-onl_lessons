@@ -55,6 +55,37 @@
 //   console.log(`${palindrome} - это не палиндром`);
 // }
 
+// но это без циклов, а с циклами
+// const myWord = `Шалаш`;
+// const checkedPalindrome = (word) => {
+// word = word.toLowerCase().replace(/[^а-яa-z1-9]/gi, '');
+// const lastIndex = word.length - 1;
+
+//     for ( let i =0; i<word.length / 2; ++i){
+//         if(word [i] !== word [lastIndex -i]){
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+// console.log(checkedPalindrome(myWord))
+
+// const checkedPalindrome2 = (word1) => {
+
+//     word1 = word1.toLowerCase();
+
+//    const wordToArray = Array.from(word1);
+//     console.log(wordToArray)
+//    let reversedWord1 = "";
+
+//     for ( let char of wordToArray.reverse()){
+//         reversedWord1 += char;
+//     }
+//      return word1 === reversedWord1;
+// }
+// console.log(checkedPalindrome2(myWord))
+
+
 // LVL UP 2
 
 // const matrix = [
@@ -73,3 +104,6 @@
 //     count++;
 //   }
 // }
+
+// const array = Array(10).fill(null).map(_ => +(Math.random() * 1000).toFixed());
+// console.log(array)
