@@ -329,3 +329,61 @@
 // };
 
 // console.log(test.func());
+
+const obj = {
+    name: 'Jon',
+    ...51
+}
+
+const MakeEmpl = function(name, age, rate) {
+    // if (name === 'Ivan') {
+        // то в this печеньки не добавляем
+    // }
+
+    this.itherValues = {
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+        // ...51 свойство
+    }
+
+    this.name = name;
+    this.age = age;
+    this.rate = rate;
+
+    // return this === {
+        // name
+        // age
+        // rate
+        // ...51 свойство
+    // }
+};
+
+const names = ['Anna Eliz', 'Bob', 'Ivan', 'Vlad', 'Anna New'];
+
+
+const newNameusingConstructor = names.map((item, index) => {
+    return new MakeEmpl(item, index, 300)
+})
+
+console.log(names, newNameusingConstructor)
+
