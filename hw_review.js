@@ -92,6 +92,9 @@
 
 // // Продвинутый уровень
 // // Задача 1.
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Разобрать на занятии!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 // // Написать функцию конструктор Student
 // // В каждом объекте студента должны быть поля salary , rate , name
 // // Внутри объекта также должен быть метод который на основе рейтинга
@@ -106,6 +109,41 @@
 // // B - хороший рейтинг и мы можем дать человеку кредит как 9 его зарплат
 // // C - неплохой рейтинг и мы можем дать человеку кредит как 6 его зарплат
 // // D - плохой рейтинг и мы не можем дать кредит
+
+
+function Student(name, salary, rate) {
+    this.name = name;
+    this.salary = salary;
+    this.rate = rate;
+
+    this.checkRate = function(){
+        if(this.rate === "A") {
+            return this.salary * 12;
+        } else if(this.rate === "B") {
+            return this.salary * 9; 
+        }else if(this.rate === "C") {
+            return this.salary * 6;
+        } else {
+            return 0;
+        }
+
+    };
+}
+const students = [];
+
+const studentVictoria = new Student("Victoria", 5000,"C");
+const studentKirill = new Student("Kirill", 2000,"A");
+const studentVlad = new Student("Vlad", 1000,"B");
+const studentIza = new Student("Izabella", 6000,"D");
+const studentKsyusha = new Student("Ksenia", 5000,"B");
+
+students.push(studentVictoria, studentKirill, studentVlad, studentIza, studentKsyusha);
+
+
+const CreditSum = students.reduce((total, Student) => total + Student.checkRate(), 0); // разобраться почему без "0" футкция возвращает [object]
+
+
+console.log("Total possible credits: " + CreditSum);
 
 
 // // Задача 2.
@@ -213,6 +251,30 @@
 // //     Затем замените все числа 7 на число 1 и назовите это число total2 .
 // //     После верните разницу между суммой цифр total1 и total2 .
 // // 'ABC' --> 'A' = 65, 'B' = 66, 'C' = 67 --> 656667
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Разобрать на занятии!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+Альтернативное решение 
+function calculateAsciiDifference(str) {
+    let total1 = '';
+    let total2 = '';
+    for (let i = 0; i < str.length; i++) {
+        total1 += str.charCodeAt(i);
+    }
+    total2 = total1.replace(/7/g, '1');
+    const sumTotal1 = total1.split('').reduce((acc, num) => acc + parseInt(num), 0);
+    const sumTotal2 = total2.split('').reduce((acc, num) => acc + parseInt(num), 0);
+    return sumTotal1 - sumTotal2;
+}
+const result = calculateAsciiDifference('ABC');
+console.log(result);
+
+
+
+// Другое решение
+
 // // const  convertToASCII= (strCodes) =>  {
 // //     const result = [];
 // //     for (let i = 0; i < strCodes.length; i++) {
