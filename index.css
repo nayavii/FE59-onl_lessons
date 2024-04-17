@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+.todo-list {
+  width: 100%;
+  height: 100vh;
+  padding: 25px;
+}
+
+.todo-list__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border: 3px solid black;
+  border-radius: 25px;
+  background-color: rgb(238 255 254);
+}
+
+.actions-block {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+}
+
+.btn_large {
+  padding: 10px 25px;
+}
+
+.btn_blue {
+  background-color: rgb(0, 255, 255);
+}
+
+.btn_blue:hover {
+  background-color: rgb(63, 221, 221);
+}
+
+.btn_small {
+  padding: 4px 10px;
+}
+
+.btn_red {
+  background-color: rgba(255, 39, 82);
+}
+
+.btn_red:hover {
+  background-color: rgb(216, 35, 71);
+}
+
+.input {
+  padding-left: 15px;
+  border-radius: 10px;
+  transition: background-color 0.1s linear;
+}
+
+.input:focus {
+  background-color: rgb(255 249 206);
+}
+
+.create-field {
+  width: 50%;
+}
+
+.search-block {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.search__all,
+.search__completed {
+  display: flex;
+  align-items: center;
+}
+
+.search-field {
+  width: 40%;
+}
+
+.list-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+.todo {
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.todo:last-child {
+  margin-bottom: 0;
+}
+
+.todo__wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  min-height: 80px;
+}
+
+.todo__action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.todo__text {
+  width: 80%;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.completed.todo {
+  background-color: rgb(175 169 169);
+}
+
+.completed .todo__text {
+  text-decoration: line-through;
+  background-color: rgb(211 211 211);
+}

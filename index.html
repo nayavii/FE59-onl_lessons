@@ -1,12 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
     <header></header>
-</body>
-<script src="index.js"></script>
+    <main>
+      <section class="todo-list">
+        <div class="todo-list__wrapper">
+          <div class="actions-block">
+            <button class="delete-all btn btn_large btn_red">Delete All</button>
+            <button class="delete-last btn btn_large btn_red">
+              Delete Last
+            </button>
+            <input
+              class="create-field input"
+              type="text"
+              placeholder="Enter todo..."
+            />
+            <button class="add btn btn_large btn_blue">Add</button>
+          </div>
+          <div class="search-block">
+            <div class="search__all">
+              <span class="search__all-title">All:</span>
+              <span class="search__all-value">2</span>
+            </div>
+            <div class="search__completed">
+              <span class="search__completed-title">Completed:</span>
+              <span class="search__completed-value">1</span>
+            </div>
+            <button class="show__all btn btn_large btn_blue">Show All</button>
+            <button class="show__completed btn btn_large btn_blue">
+              Show Completed
+            </button>
+            <input class="search-field input" placeholder="Search..." />
+          </div>
+          <ul class="list-block">
+            <li class="todo">
+              <div class="todo__wrapper">
+                <input type="checkbox" class="todo__completed" />
+                <div class="todo__text">Todo text</div>
+                <div class="todo__action">
+                  <button class="todo__close btn btn_small btn_red">Х</button>
+                  <span class="todo__date">Date</span>
+                </div>
+              </div>
+            </li>
+            <li class="todo completed">
+              <div class="todo__wrapper">
+                <input type="checkbox" class="todo__completed" checked />
+                <div class="todo__text">Todo text</div>
+                <div class="todo__action">
+                  <button class="todo__close btn btn_small btn_red">Х</button>
+                  <span class="todo__date">Date</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
+  <script src="index.js"></script>
 </html>
