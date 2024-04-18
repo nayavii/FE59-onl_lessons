@@ -6,6 +6,15 @@
 // .wrapper_down__SomeText{
 // .DateText{
 
+// .header
+// .todo-list
+
+// .header__logo
+// .todo-list__item
+
+// .header__item_black
+// .todo-list__item_red
+
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // * {
 //     margin: 0;
