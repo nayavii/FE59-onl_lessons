@@ -4,17 +4,17 @@
   width: 100%;
   height: 100vh;
   padding: 25px;
-}
 
-.todo-list__wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  border: 3px solid #000000;
-  border-radius: 25px;
-  background-color: #eefffe;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border: 3px solid #000000;
+    border-radius: 25px;
+    background-color: #eefffe;
+  }
 }
 
 .actions {
@@ -22,10 +22,10 @@
   justify-content: space-between;
   width: 100%;
   margin-bottom: 15px;
-}
 
-.actions__create-field {
-  width: 50%;
+  &__create-field {
+    width: 50%;
+  }
 }
 
 .search {
@@ -33,21 +33,21 @@
   justify-content: space-between;
   width: 100%;
   margin-bottom: 15px;
-}
 
-.search__all,
-.search__completed {
-  display: flex;
-  align-items: center;
-}
+  &__all,
+  &__completed {
+    display: flex;
+    align-items: center;
+  }
 
-.search__all-title,
-.search__completed-title {
-  white-space: break-spaces;
-}
+  &__all-title,
+  &__completed-title {
+    white-space: break-spaces;
+  }
 
-.search-field {
-  width: 40%;
+  &__text-field {
+    width: 40%;
+  }
 }
 
 .todos {
@@ -58,37 +58,39 @@
   width: 70%;
 }
 
-.todo__item {
-  border: 2px solid #000000;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  width: 100%;
-}
+.todo {
 
-.todo:last-child {
-  margin-bottom: 0;
-}
+  &__item {
+    border: 2px solid #000000;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
 
-.todo__wrapper {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-  min-height: 80px;
-}
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    min-height: 80px;
+  }
 
-.todo__action {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-}
+  &__action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
 
-.todo__text {
-  width: 80%;
-  background-color: #ffffff;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  &__text {
+    width: 80%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

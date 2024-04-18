@@ -50,7 +50,7 @@ ol {
   background-color: #fff9ce;
 }
 
-.completed.todo {
+.completed.todo__item {
   background-color: #afa9a9;
 }
 
@@ -64,7 +64,6 @@ ol {
   height: 100vh;
   padding: 25px;
 }
-
 .todo-list__wrapper {
   display: flex;
   flex-direction: column;
@@ -82,7 +81,6 @@ ol {
   width: 100%;
   margin-bottom: 15px;
 }
-
 .actions__create-field {
   width: 50%;
 }
@@ -93,19 +91,14 @@ ol {
   width: 100%;
   margin-bottom: 15px;
 }
-
-.search__all,
-.search__completed {
+.search__all, .search__completed {
   display: flex;
   align-items: center;
 }
-
-.search__all-title,
-.search__completed-title {
+.search__all-title, .search__completed-title {
   white-space: break-spaces;
 }
-
-.search-field {
+.search__text-field {
   width: 40%;
 }
 
@@ -123,25 +116,18 @@ ol {
   margin-bottom: 15px;
   width: 100%;
 }
-
-.todo:last-child {
-  margin-bottom: 0;
-}
-
 .todo__wrapper {
   display: flex;
   justify-content: space-between;
   padding: 5px;
   min-height: 80px;
 }
-
 .todo__action {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
 }
-
 .todo__text {
   width: 80%;
   background-color: #ffffff;
@@ -149,4 +135,7 @@ ol {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.todo:last-child {
+  margin-bottom: 0;
 }/*# sourceMappingURL=index.css.map */
