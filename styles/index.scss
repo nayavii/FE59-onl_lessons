@@ -1,13 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-ul,
-ol {
-  list-style: none;
-}
+@import "./general";
 
 .todo-list {
   width: 100%;
@@ -21,64 +12,23 @@ ol {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  border: 3px solid black;
+  border: 3px solid #000000;
   border-radius: 25px;
-  background-color: rgb(238 255 254);
+  background-color: #eefffe;
 }
 
-.actions-block {
+.actions {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 15px;
 }
 
-.btn {
-  border: 0;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.2s linear;
-}
-
-.btn_large {
-  padding: 10px 25px;
-}
-
-.btn_blue {
-  background-color: rgb(0, 255, 255);
-}
-
-.btn_blue:hover {
-  background-color: rgb(63, 221, 221);
-}
-
-.btn_small {
-  padding: 4px 10px;
-}
-
-.btn_red {
-  background-color: rgba(255, 39, 82);
-}
-
-.btn_red:hover {
-  background-color: rgb(216, 35, 71);
-}
-
-.input {
-  padding-left: 15px;
-  border-radius: 10px;
-  transition: background-color 0.1s linear;
-}
-
-.input:focus {
-  background-color: rgb(255 249 206);
-}
-
-.create-field {
+.actions__create-field {
   width: 50%;
 }
 
-.search-block {
+.search {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -91,11 +41,16 @@ ol {
   align-items: center;
 }
 
+.search__all-title,
+.search__completed-title {
+  white-space: break-spaces;
+}
+
 .search-field {
   width: 40%;
 }
 
-.list-block {
+.todos {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,8 +58,8 @@ ol {
   width: 70%;
 }
 
-.todo {
-  border: 2px solid black;
+.todo__item {
+  border: 2px solid #000000;
   border-radius: 10px;
   margin-bottom: 15px;
   width: 100%;
@@ -130,18 +85,10 @@ ol {
 
 .todo__text {
   width: 80%;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.completed.todo {
-  background-color: rgb(175 169 169);
-}
-
-.completed .todo__text {
-  text-decoration: line-through;
-  background-color: rgb(211 211 211);
-}
