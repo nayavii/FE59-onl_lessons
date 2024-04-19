@@ -59,19 +59,18 @@
 }
 
 .todo {
-
   &__item {
+    width: 100%;
+    margin-bottom: 15px;
     border: 2px solid #000000;
     border-radius: 10px;
-    margin-bottom: 15px;
-    width: 100%;
   }
 
   &__wrapper {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
     min-height: 80px;
+    padding: 5px;
   }
 
   &__action {
@@ -82,12 +81,12 @@
   }
 
   &__text {
-    width: 80%;
-    background-color: #ffffff;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 80%;
+    border-radius: 10px;
+    background-color: #ffffff;
   }
 
   &:last-child {
