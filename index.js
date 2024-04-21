@@ -72,19 +72,19 @@
 // });
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-const addButton = document.querySelector('.actions__add');
-const ul = document.querySelector('.todos');
+const addButton = document.querySelector(".actions__add");
+const ul = document.querySelector(".todos");
 
-addButton.addEventListener('click', () => {
-    const createField = document.querySelector('.actions__create-field');
-    const inputText = createField.value; // ''
+addButton.addEventListener("click", () => {
+  const createField = document.querySelector(".actions__create-field");
+  const inputText = createField.value; // ''
 
-    if (inputText) {
-        const todoItem = document.createElement('li');
-        todoItem.classList.add('todo__item');
-    
-        // <button class="todo__close btn btn_small btn_red" onclick="deleteToDo(event)">Х</button>
-        todoItem.innerHTML = `
+  if (inputText) {
+    const todoItem = document.createElement("li");
+    todoItem.classList.add("todo__item");
+
+    // <button class="todo__close btn btn_small btn_red" onclick="deleteToDo(event)">Х</button>
+    todoItem.innerHTML = `
             <div class="todo__wrapper">
                 <input type="checkbox" class="todo__completed" />
                 <div class="todo__text">${inputText}</div>
@@ -94,20 +94,20 @@ addButton.addEventListener('click', () => {
                 </div>
             </div>
         `;
-    
-        ul.append(todoItem);
 
-        createField.value = '';
-    }
-})
+    ul.append(todoItem);
 
-const closeBtns = document.querySelectorAll('.todo__close'); // []
+    createField.value = "";
+  }
+});
+
+const closeBtns = document.querySelectorAll(".todo__close"); // []
 
 function deleteToDo(event) {
-    // event.target - это сам элемент на который мы кликнули
-    const currentLi = event.target.parentElement.parentElement.parentElement;
+  // event.target - это сам элемент на который мы кликнули
+  const currentLi = event.target.parentElement.parentElement.parentElement;
 
-    ul.removeChild(currentLi);
+  ul.removeChild(currentLi);
 }
 
 // closeBtns.forEach(item => {
@@ -138,13 +138,13 @@ function deleteToDo(event) {
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // ДЕЛЕГИРОВАНИЕ СОБЫТИЙ
 
-ul.addEventListener('click', (event) => {
-    console.log(event.target)
-    if (event.target.classList.contains('todo__close')) {
-        deleteToDo(event);
-        // const currentLi = event.target.parentElement.parentElement.parentElement;
-        // ul.removeChild(currentLi);
-    }
+ul.addEventListener("click", (event) => {
+  console.log(event.target);
+  if (event.target.classList.contains("todo__close")) {
+    deleteToDo(event);
+    // const currentLi = event.target.parentElement.parentElement.parentElement;
+    // ul.removeChild(currentLi);
+  }
 });
 
-new Date()
+new Date();
