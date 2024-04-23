@@ -2,6 +2,7 @@
 
 // стилизация элементов через классы по БЭМу (блок, элемент, модификатор)
 
+// todo__button--show-completed
 // banner_bottom__block__container-input
 {
   /* <section class="banner">
@@ -59,7 +60,26 @@
 // https://learn.javascript.ru/css-format
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// Переопределять лишний раз не нужно и все подряд тоже, чистота кода
+// *{
+//     padding: 0;
+//     margin: 0;
+//     box-sizing: border-box;
+// text-decoration: none;
+// list-style-type: none;
+// }
+
+// a {
+//     text-decoration: none;
+//     color: inherit;
+// }
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //Для обработки клика на чекбокс/кнопку достаточно создать только один обработчик.
+
+// два и более раз
+// ul.addEventListener('click', (event) => {
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -69,3 +89,28 @@
 
 // Если нужно добавить новые стили то лучше всего это делать через классы, а не через инлайновые стили (element.style.background = 'red')
 //т.е. при клике не менять стили многих элементов, а поменять один класс, который переопределит все что нужно
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// удаление всех элементов 
+
+// const todos = document.querySelectorAll('.todo__item');
+// if (todos.length > 0) {
+//     todos[todos.length - 1].remove();
+// }
+
+// или
+// while (ul.firstChild) {
+//     ul.removeChild(ul.firstChild);
+// }
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// Даты 
+// const date = new Date().toISOString().slice(0,10).split('-').reverse().join('.'); // 23.04.2024
+// то же самое new Date().toLocaleDateString().replaceAll('/', '.'); // 23.04.2024
+
+// был такой варик 
+// const currentDate = new Date();
+// const year = currentDate.getFullYear();
+// const month = currentDate.getMonth();
+// const day = currentDate.getDate();
+// const fullDate = `${day}.${month}.${year}`;
