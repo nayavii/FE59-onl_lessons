@@ -1,6 +1,6 @@
 .todo-list {
   width: 100%;
-  height: 100vh;
+  height: 50vh;
   padding: 25px;
 
   &__wrapper {
@@ -87,7 +87,21 @@
     background-color: #ffffff;
   }
 
+  &__date {
+    white-space: pre-line;
+    text-align: end;
+  }
+
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+.todo__item_completed.todo__item {
+  background-color: #afa9a9;
+}
+
+.todo__item_completed .todo__text {
+  text-decoration: line-through;
+  background-color: #d3d3d3;
 }

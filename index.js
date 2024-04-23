@@ -1,150 +1,208 @@
 "use strict";
 
-// const addButton = document.querySelector('.actions__add');
-
-// // const addButton = {
-// //     style,
-// //     classList,
-// //     onclick,
-// // }
-
-// addButton.onclick = () => { // можно только один обработчик на один элемент
-//     // ...что-то делаем
-//     // console.log('Вы нажали на кнопку');
-// }
-
-// addButton.addEventListener('click', (event) => { // можно вешать сколько хотим таких обработчиков событий
-//     // ...что-то делаем
-//     console.log(event);
-//     console.log('Вы нажали на кнопку');
-// }); //{once, cature, passive} - третий необязательный аргумент
-
-// once - выполнение функции один раз
-// cature - замена всплытия на погружение
-
-// addButton.addEventListener('click', (event) => {
-//     console.log('2');
-// }) //{options} - третий необязательный аргумент
-
-// СОБЫТИЯ:
-// click - нажатие мышкой на элемент
-// mouseover - наведение курсора мышки
-// mouseout - убираем курсор мышкиъ
-// mousemove - движение мыши
-// keydown - нажатие на какую-нить кнопку на клаве
-// keypress - удержание кнопки
-// keyup - отпускание кнопки после удержания
-// input - ввод текста в инпуте
-// submit - отправка формы га сервак
-// focus - попадание в фокус элемента
-// scroll - срабатывает при скролинге
-
-// const create = document.querySelector('.actions__create-field');
-
-// create.addEventListener('input', (event) => {
-//     // event.target === create
-//     console.log(event.target.value);
-// })
-
-// // create.addEventListener('mouseover', (event) => {
-// //     // event.target === create
-// //     console.log('Мы навели курсор');
-// // })
-
-// create.addEventListener('mouseout', (event) => {
-//     // event.target === create
-//     console.log('Мы ублрали курсор');
-// })
-
-// const addButton = document.querySelector('.actions__add');
-
-// addButton.addEventListener('click', (event) => {
-//     // console.log(event);
-//     console.log('Вы нажали на кнопку');
-// }, {once: true}); //{once, cature, passive} - третий необязательный аргумент
-
-// addButton.removeEventListener('click', () => {}) // удалить обработчик событий
-
-// const addButton = document.querySelector('.actions__add');
-
-// addButton.addEventListener('click', (event) => {
-
-// });
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+const createField = document.querySelector(".actions__create-field");
 const addButton = document.querySelector(".actions__add");
+const deleteAllButton = document.querySelector('.actions__delete-all');
+const deleteLastItem = document.querySelector('.actions__delete-last');
 const ul = document.querySelector(".todos");
 
-addButton.addEventListener("click", () => {
-  const createField = document.querySelector(".actions__create-field");
-  const inputText = createField.value; // ''
+let uniqueIdItem = 1;
+
+const createToDoItem = () => {
+  const inputText = createField.value;
 
   if (inputText) {
     const todoItem = document.createElement("li");
     todoItem.classList.add("todo__item");
+    todoItem.id = `todo-item-${uniqueIdItem}`;
+    const date = new Date().toLocaleString();
 
-    // <button class="todo__close btn btn_small btn_red" onclick="deleteToDo(event)">Х</button>
     todoItem.innerHTML = `
             <div class="todo__wrapper">
-                <input type="checkbox" class="todo__completed" />
+                <input type="checkbox" class="todo__completed" id="todo-completed-${uniqueIdItem}" />
                 <div class="todo__text">${inputText}</div>
                 <div class="todo__action">
-                    <button class="todo__close btn btn_small btn_red">Х</button>
-                    <span class="todo__date">Date</span>
+                    <button class="todo__close btn btn_small btn_red" id="todo-delete-${uniqueIdItem}" >Х</button>
+                    <span class="todo__date">${date}</span>
                 </div>
             </div>
         `;
 
     ul.append(todoItem);
 
+    const todo = {
+      id: `todo-item-${uniqueIdItem}`,
+      text: inputText,
+      date,
+      isChecked: false,
+    };
+
+    const data = localStorage.getItem('todos');
+
+    if (!data) {
+      localStorage.setItem('todos', JSON.stringify([todo]));
+    } else {
+      const result = JSON.parse(data);
+      result.push(todo);
+
+      localStorage.setItem('todos', JSON.stringify(result));
+    }
+
     createField.value = "";
+    ++uniqueIdItem;
   }
-});
+};
 
-const closeBtns = document.querySelectorAll(".todo__close"); // []
+const deleteToDo = (event) => {
+  const id = event.target.id;
+  const liId = `todo-item-${id.split('-').at(-1)}`
 
-function deleteToDo(event) {
-  // event.target - это сам элемент на который мы кликнули
-  const currentLi = event.target.parentElement.parentElement.parentElement;
+  // const currentLi = document.querySelector(`#${liId}`);
+  const currentLi = ul.querySelector(`#${liId}`);
+  console.log(id, liId);
 
+  // const currentLi = event.target.parentElement.parentElement.parentElement;
   ul.removeChild(currentLi);
 }
 
-// closeBtns.forEach(item => {
-//     item.addEventListener('click', deleteToDo)
-// })
+const makeToDoCompleted = (event) => {
+  const id = event.target.id; //todo-completed-1
+  const liId = `todo-item-${id.split('-').at(-1)}`; // todo-item-1
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// ВСПЛЫТИЕ И ПОГРУЖЕНИЕ
+  // const currentLi = event.target.parentElement.parentElement;
+  const currentLi = ul.querySelector(`#${liId}`);
+  currentLi.classList.toggle('todo__item_completed')
+}
 
-// const todoList = document.querySelector('.todo-list');
-// const search = document.querySelector('.search');
-// const showCompletedBtn = document.querySelector('.search__show-completed');
+const deleteAll = () => {
+  ul.innerHTML = '';
+}
 
-// todoList.addEventListener('click', (event) => {
-//     console.log('click on todoList');
-// });
+const deleteLast = () => {
+  const lastElement = ul.lastElementChild;
 
-// search.addEventListener('click', (event) => {
-//     console.log('click on search');
-// });
-
-// showCompletedBtn.addEventListener('click', (event) => {
-//     console.log('click on showCompletedBtn');
-
-//     event.stopPropagation(); // запрет всплытия и погружения
-// });
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// ДЕЛЕГИРОВАНИЕ СОБЫТИЙ
+  if (lastElement) {
+    ul.removeChild(lastElement);
+  }
+}
 
 ul.addEventListener("click", (event) => {
-  console.log(event.target);
   if (event.target.classList.contains("todo__close")) {
     deleteToDo(event);
-    // const currentLi = event.target.parentElement.parentElement.parentElement;
-    // ul.removeChild(currentLi);
+  }
+
+  if (event.target.classList.contains("todo__completed")) {
+    makeToDoCompleted(event);
   }
 });
+addButton.addEventListener("click", createToDoItem);
+deleteAllButton.addEventListener('click', deleteAll);
+deleteLastItem.addEventListener('click', deleteLast)
 
-new Date();
+const todoList = localStorage.getItem('todos');
+
+if (todoList) {
+  const result = JSON.parse(todoList);
+
+  result.forEach(item => {
+      // const item = {
+    //   id: `todo-item-${uniqueIdItem}`,
+    //   text: inputText,
+    //   date,
+    //   isChecked: false,
+    // };
+    
+    const todoItem = document.createElement("li");
+    todoItem.classList.add("todo__item");
+    todoItem.id = item.id;
+    const date = item.date;
+
+    todoItem.innerHTML = `
+      <div class="todo__wrapper">
+          <input type="checkbox" class="todo__completed" id="todo-completed-${uniqueIdItem}" />
+          <div class="todo__text">${item.text}</div>
+          <div class="todo__action">
+              <button class="todo__close btn btn_small btn_red" id="todo-delete-${uniqueIdItem}" >Х</button>
+              <span class="todo__date">${date}</span>
+          </div>
+      </div>
+  `;
+
+    ul.append(todoItem);
+  });
+}
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// НОВАЯ ТЕМА 25 ХРАНИЛИЩА
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// const user = localStorage.getItem('userName');
+
+// if (!user) {
+//   const login = prompt('Введите ваш логин');
+//   localStorage.setItem('userName', login);
+  
+//   alert(`Добро пожаловать ${login}`);
+// } else {
+//   alert(`С возвращением ${user}!!!`);
+// }
+
+// createField.addEventListener('input', (event) => {
+//   localStorage.setItem('text', event.target.value)
+//   // console.log(event.target.value);
+// })
+
+// const text = localStorage.getItem('text');
+// createField.value = text;
+
+// Все методы для localStorage
+// localStorage.getItem('key');
+// localStorage.setItem('key', 'value');
+// localStorage.removeItem('key');
+// localStorage.clear();
+// localStorage.key(0);
+// localStorage.length;
+
+// Все методы для sessionStorage
+// sessionStorage.getItem('key');
+// sessionStorage.setItem('key', 'value');
+// sessionStorage.removeItem('key');
+// sessionStorage.clear();
+// sessionStorage.key(0);
+// sessionStorage.length;
+
+// const localStorageBtn = document.querySelector('.local-storage');
+
+// localStorageBtn.addEventListener('click', () => {
+//   const obj = {
+//     user: 'Jon',
+//     age: 23,
+//     isAdmin: true,
+//   }
+
+//   const string = JSON.stringify(obj)
+
+//   localStorage.setItem('user', string);
+
+
+//   // setTimeout(() => {
+//   //   const user = localStorage.getItem('user');
+//   //   const parsedData = JSON.parse(user);
+
+//   //   console.log(user, typeof user);
+//   //   console.log(parsedData, typeof parsedData);
+//   // }, 1000)
+// })
+
+// window.addEventListener('storage', (event) => {
+//   console.log(event)
+// });
+
+// window.addEventListener("storage", (event) => {
+//   console.log(event);
+// });
+// const cookie = document.querySelector('.cookie');
+// cookie.addEventListener('click', () => {
+//   document.cookie="user=admin"
+// })

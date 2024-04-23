@@ -49,12 +49,3 @@ ol {
 .input:focus {
   background-color: #fff9ce;
 }
-
-.completed.todo__item {
-  background-color: #afa9a9;
-}
-
-.completed .todo__text {
-  text-decoration: line-through;
-  background-color: #d3d3d3;
-}
