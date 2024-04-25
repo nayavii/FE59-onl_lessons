@@ -1,6 +1,24 @@
-"use strict";
+// import {testImportName, testImportage, getName} from './scripts/helper.js';
+// import superImportantFuction from './scripts/helper.js';
+// import * as helper from './scripts/helper.js';
+
+// * === {
+//   testImportName,
+//   testImportage,
+//   getName,
+// }
+
+// const helper = {
+//   testImportName,
+//   testImportage,
+//   getName,
+// }
+
+// helper.getName();
+
 
 const createField = document.querySelector(".actions__create-field");
+const searchField = document.querySelector('.search__text-field');
 const addButton = document.querySelector(".actions__add");
 const deleteAllButton = document.querySelector('.actions__delete-all');
 const deleteLastItem = document.querySelector('.actions__delete-last');
@@ -8,31 +26,39 @@ const ul = document.querySelector(".todos");
 
 let uniqueIdItem = 1;
 
-const createToDoItem = () => {
-  const inputText = createField.value;
-
-  if (inputText) {
-    const todoItem = document.createElement("li");
+const createToDo = ({id, date, text, isChecked}, uniqueIdItem) => {
+  // const {id, date, text, isChecked} = item;
+  const todoItem = document.createElement("li");
     todoItem.classList.add("todo__item");
-    todoItem.id = `todo-item-${uniqueIdItem}`;
-    const date = new Date().toLocaleString();
+    todoItem.id = id; // todo-item-на первой итерации
+    const uniqueLocalId = uniqueIdItem || id.split('-').at(-1)
 
     todoItem.innerHTML = `
-            <div class="todo__wrapper">
-                <input type="checkbox" class="todo__completed" id="todo-completed-${uniqueIdItem}" />
-                <div class="todo__text">${inputText}</div>
-                <div class="todo__action">
-                    <button class="todo__close btn btn_small btn_red" id="todo-delete-${uniqueIdItem}" >Х</button>
-                    <span class="todo__date">${date}</span>
-                </div>
-            </div>
-        `;
+      <div class="todo__wrapper">
+          <input type="checkbox" class="todo__completed" id="todo-completed-${uniqueLocalId}" />
+          <div class="todo__text">${text}</div>
+          <div class="todo__action">
+              <button class="todo__close btn btn_small btn_red" id="todo-delete-${uniqueLocalId}" >Х</button>
+              <span class="todo__date">${date}</span>
+          </div>
+      </div>
+  `;
 
     ul.append(todoItem);
+}
 
+const handleClickCreate = () => {
+  const text = createField.value;
+
+  if (text) {
+    const id = `todo-item-${uniqueIdItem}`;
+    const date = new Date().toLocaleString();
+
+    createToDo({id, date, text, isChecked: false}, uniqueIdItem);
+    
     const todo = {
-      id: `todo-item-${uniqueIdItem}`,
-      text: inputText,
+      id,
+      text,
       date,
       isChecked: false,
     };
@@ -57,19 +83,16 @@ const deleteToDo = (event) => {
   const id = event.target.id;
   const liId = `todo-item-${id.split('-').at(-1)}`
 
-  // const currentLi = document.querySelector(`#${liId}`);
   const currentLi = ul.querySelector(`#${liId}`);
   console.log(id, liId);
 
-  // const currentLi = event.target.parentElement.parentElement.parentElement;
   ul.removeChild(currentLi);
 }
 
 const makeToDoCompleted = (event) => {
-  const id = event.target.id; //todo-completed-1
-  const liId = `todo-item-${id.split('-').at(-1)}`; // todo-item-1
+  const id = event.target.id;
+  const liId = `todo-item-${id.split('-').at(-1)}`;
 
-  // const currentLi = event.target.parentElement.parentElement;
   const currentLi = ul.querySelector(`#${liId}`);
   currentLi.classList.toggle('todo__item_completed')
 }
@@ -86,6 +109,18 @@ const deleteLast = () => {
   }
 }
 
+const initTodoList = () => {
+  const todoList = localStorage.getItem('todos');
+
+  if (todoList) {
+    const result = JSON.parse(todoList);
+  
+    result.forEach(item => {
+      createToDo(item)
+    });
+  }
+}
+
 ul.addEventListener("click", (event) => {
   if (event.target.classList.contains("todo__close")) {
     deleteToDo(event);
@@ -95,114 +130,32 @@ ul.addEventListener("click", (event) => {
     makeToDoCompleted(event);
   }
 });
-addButton.addEventListener("click", createToDoItem);
+addButton.addEventListener("click", handleClickCreate);
 deleteAllButton.addEventListener('click', deleteAll);
 deleteLastItem.addEventListener('click', deleteLast)
 
-const todoList = localStorage.getItem('todos');
+initTodoList();
 
-if (todoList) {
-  const result = JSON.parse(todoList);
+searchField.addEventListener('input', (event) => {
+  const searchedText = event.target.value;
 
-  result.forEach(item => {
-      // const item = {
-    //   id: `todo-item-${uniqueIdItem}`,
-    //   text: inputText,
-    //   date,
-    //   isChecked: false,
-    // };
-    
-    const todoItem = document.createElement("li");
-    todoItem.classList.add("todo__item");
-    todoItem.id = item.id;
-    const date = item.date;
+  const localStorageData = localStorage.getItem('todos');
+  const todos = JSON.parse(localStorageData);
 
-    todoItem.innerHTML = `
-      <div class="todo__wrapper">
-          <input type="checkbox" class="todo__completed" id="todo-completed-${uniqueIdItem}" />
-          <div class="todo__text">${item.text}</div>
-          <div class="todo__action">
-              <button class="todo__close btn btn_small btn_red" id="todo-delete-${uniqueIdItem}" >Х</button>
-              <span class="todo__date">${date}</span>
-          </div>
-      </div>
-  `;
+  // const searchedToDos = todos.filter(({text}) => { // пример деструктуризации где мы вытянули сразу текст
+  //   return text.includes(searchedText);
+  // })
 
-    ul.append(todoItem);
+  const searchedToDos = todos.filter(todo => {
+    return todo.text.includes(searchedText);
+  })
+
+  console.log(todos, searchedToDos);
+
+  ul.innerHTML = '';
+
+  searchedToDos.forEach(item => {
+    // createToDo(item.id, item.date. item.text, item.isChecked);
+    createToDo(item);
   });
-}
-
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// НОВАЯ ТЕМА 25 ХРАНИЛИЩА
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// const user = localStorage.getItem('userName');
-
-// if (!user) {
-//   const login = prompt('Введите ваш логин');
-//   localStorage.setItem('userName', login);
-  
-//   alert(`Добро пожаловать ${login}`);
-// } else {
-//   alert(`С возвращением ${user}!!!`);
-// }
-
-// createField.addEventListener('input', (event) => {
-//   localStorage.setItem('text', event.target.value)
-//   // console.log(event.target.value);
-// })
-
-// const text = localStorage.getItem('text');
-// createField.value = text;
-
-// Все методы для localStorage
-// localStorage.getItem('key');
-// localStorage.setItem('key', 'value');
-// localStorage.removeItem('key');
-// localStorage.clear();
-// localStorage.key(0);
-// localStorage.length;
-
-// Все методы для sessionStorage
-// sessionStorage.getItem('key');
-// sessionStorage.setItem('key', 'value');
-// sessionStorage.removeItem('key');
-// sessionStorage.clear();
-// sessionStorage.key(0);
-// sessionStorage.length;
-
-// const localStorageBtn = document.querySelector('.local-storage');
-
-// localStorageBtn.addEventListener('click', () => {
-//   const obj = {
-//     user: 'Jon',
-//     age: 23,
-//     isAdmin: true,
-//   }
-
-//   const string = JSON.stringify(obj)
-
-//   localStorage.setItem('user', string);
-
-
-//   // setTimeout(() => {
-//   //   const user = localStorage.getItem('user');
-//   //   const parsedData = JSON.parse(user);
-
-//   //   console.log(user, typeof user);
-//   //   console.log(parsedData, typeof parsedData);
-//   // }, 1000)
-// })
-
-// window.addEventListener('storage', (event) => {
-//   console.log(event)
-// });
-
-// window.addEventListener("storage", (event) => {
-//   console.log(event);
-// });
-// const cookie = document.querySelector('.cookie');
-// cookie.addEventListener('click', () => {
-//   document.cookie="user=admin"
-// })
+});
