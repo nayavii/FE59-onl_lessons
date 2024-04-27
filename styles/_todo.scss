@@ -1,6 +1,4 @@
 .todo-list {
-  width: 100%;
-  height: 50vh;
   padding: 25px;
 
   &__wrapper {
@@ -18,6 +16,7 @@
 .actions {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 100%;
   margin-bottom: 15px;
 
@@ -29,6 +28,7 @@
 .search {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 100%;
   margin-bottom: 15px;
 
@@ -97,8 +97,8 @@
   }
 }
 
-.todo__item_completed.todo__item {
-  background-color: #afa9a9;
+.todo__item_completed {
+  background-color: #c1bcbc;
 }
 
 .todo__item_completed .todo__text {
