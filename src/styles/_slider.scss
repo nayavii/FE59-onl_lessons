@@ -1,0 +1,55 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.slider {
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+
+    &__wrapper {
+        position: relative;
+        width: 300px;
+        height: 300px;
+    }
+
+    &__prev,
+    &__next {
+        position: absolute;
+        top: 50%;
+        width: 30px;
+        height: 30px;
+        border: 0;
+        border-left: 2px solid rgb(103, 103, 152);
+        border-bottom: 2px solid rgb(103, 103, 152);
+        background: inherit;
+        transform: translate(50%);
+        cursor: pointer;
+    }
+
+    &__prev {
+        left: -40px;
+        transform: rotate(45deg);
+    }
+
+    &__next {
+        right: -40px;
+        transform: rotate(-135deg);
+    }
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+
+    &_visible {
+        opacity: 1;
+        animation: fadeIn .2s linear;
+    }
+}

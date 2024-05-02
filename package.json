@@ -1,0 +1,17 @@
+{
+    "name": "fe59-onl_lessons",
+    "version": "1.0.0",
+    "description": "Все занятия по JS",
+    "main": "index.js",
+    "scripts": {
+        "dev": "parcel ./src/index.html",
+        "build": "parcel build ./src/index.html --no-source-maps"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "parcel-bundler": "^1.12.5",
+        "sass": "^1.76.0"
+    }
+}

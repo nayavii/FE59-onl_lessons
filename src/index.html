@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./styles/index.scss" />
   </head>
   <body>
     <header class="header">
@@ -14,6 +14,24 @@
       </div>
     </header>
     <main>
+      <section class="slider">
+        <div class="slider__wrapper">
+          <div class="slide">
+            <img src="../../../Documents/Reserved_cards/1x1.png" alt="">
+          </div>
+          <div class="slide">
+            <img src="../../../Documents/Reserved_cards/1x2.png" alt="">
+          </div>
+          <div class="slide">
+            <img src="../../../Documents/Reserved_cards/1x3.png" alt="">
+          </div>
+          <div class="slide">
+            <img src="../../../Documents/Reserved_cards/1x4.png" alt="">
+          </div>
+          <button class="slider__prev"></button>
+          <button class="slider__next"></button>
+        </div>
+      </section>
       <section class="traffic-lights">
         <div class="light"></div>
         <div class="light"></div>
@@ -32,5 +50,5 @@
       </div>
     </section>
   </body>
-  <script src="index.js" type="module"></script>
+  <script src="./scripts/index.js" type="module"></script>
 </html>
