@@ -1,4 +1,5 @@
 import { handleClock } from "./clock.js";
+import {trafficLights} from './traffic-lights.js';
 
 const showModalBtn = document.querySelector(".header__show-modal");
 const modal = document.querySelector(".modal");
@@ -18,13 +19,16 @@ modalCloseBtn.addEventListener("click", (event) => {
 
 handleClock();
 
-console.log("Start", new Date().toLocaleTimeString());
+// console.log("Start", new Date().toLocaleTimeString());
 
-const arrayy = new Array(10000)
-  .fill(null)
-  .map((_, i) => ++i)
-  .map((item) => item ** item)
-  .map((item, _, array) => array.filter((item) => item % 5));
-console.log(arrayy);
+// const arrayy = new Array(10000)
+//   .fill(null)
+//   .map((_, i) => ++i)
+//   .map((item) => item ** item)
+//   .map((item, _, array) => array.filter((item) => item % 5));
+// console.log(arrayy);
 
-console.log("End", new Date().toLocaleTimeString());
+// console.log("End", new Date().toLocaleTimeString());
+
+
+trafficLights();
