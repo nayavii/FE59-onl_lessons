@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/Karasevgen1205/FE59-onl_lessons#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.76.0"
+  },
+  "dependencies": {
+    "swiper": "^11.1.1"
   }
 }
