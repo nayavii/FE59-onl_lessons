@@ -72,7 +72,11 @@
 
 // const loadingDiv = document.getElementById('loading');
 
-loadingDiv.style.visibility = 'visible';
+// try {
+// loadingDiv.style.visibility = 'visible';
+// } catch(e) {
+//     console.log(e);
+// }
 
 fetch('https://jsonplaceholder.typicode.com/todos') // [{}, ...] получаем массив, который содержит 100 объектов
     .then(response => response.json()) // преобразовываем его в читаемый для JS вид
@@ -129,7 +133,7 @@ fetch('https://jsonplaceholder.typicode.com/todos') // [{}, ...] получае�
     })
     .finally(() => {
         // console.log('Я выполняюсь в любом случае');
-        loadingDiv.style.visibility = 'hidden';
+        // loadingDiv.style.visibility = 'hidden';
         // удалем спиннер со страницы
     })
 
@@ -144,14 +148,14 @@ fetch('https://jsonplaceholder.typicode.com/todos') // [{}, ...] получае�
 //     .catch((error) => console.log(error))
 //     .finally(() => console.log('finally'))
 
-const getData = async () => {
-    const request = await fetch('https://jsonplaceholder.typicode.com/posts');
+// const getData = async () => {
+//     const request = await fetch('https://jsonplaceholder.typicode.com/posts');
 
-    // console.log не будет выполняться до тех пор, пока не выполниться запрос
-    console.log(request);
+//     // console.log не будет выполняться до тех пор, пока не выполниться запрос
+//     console.log(request);
 
-    // const result = await request.json();
-    // console.log(result);
-}
+//     // const result = await request.json();
+//     // console.log(result);
+// }
 
-getData();
+// getData();

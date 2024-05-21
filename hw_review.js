@@ -1,12 +1,50 @@
 // На занятии обсудить
 
 // try/catch
+// fetch('https://jsonplaceholder.typicode.com/todos') // [{}, ...] получаем массив, который содержит 100 объектов
+//     .then(response => response.json()) // преобразовываем его в читаемый для JS вид
+//     .then(response => createTodos(response))
+//     .catch(error => createError())
 
-// ["Begin on Road A","Right on Road B","Right on Road C","Left on Road D"]
-// ['Begin on Road D', 'Right on Road C', 'Left on Road B', 'Left on Road A']
+// const getData = async () => {
+//   try {
+//       const response = await fetch('https://jsonplaceholder.typicode.com/todo3s');
 
-// ['Begin on Lua Pkwy', 'Right on Sixth Alley', 'Right on 1st Cr']
-// ['Begin on 1st Cr', 'Left on Sixth Alley', 'Left on Lua Pkwy']
+//       const result = await response.json();
+
+//       createTodos(result)
+//   } catch(e) {
+//       createError();
+//   }
+// }
+
+// getData();
+
+// try {
+//   loadingDiv.style.visibility = 'visible';
+// } catch(e) {
+//   console.log(e);
+// }
+
+// // Получакет:
+// // ["Begin on Road A","Right on Road B","Right on Road C","Left on Road D"]
+// // Возвращает:
+// // ['Begin on Road D', 'Right on Road C', 'Left on Road B', 'Left on Road A']
+
+// // Получает:
+// // ['Begin on Lua Pkwy', 'Right on Sixth Alley', 'Right on 1st Cr']
+// // Возвращает:
+// // ['Begin on 1st Cr', 'Left on Sixth Alley', 'Left on Lua Pkwy']
+
+// const direction = (dirArray) => {
+//   const reverseDirArray = [];
+
+//   return reverseDirArray;
+// }
+
+// console.log(direction(["Begin on Road A","Right on Road B","Right on Road C","Left on Road D"]));
+// // ['Begin on Road D', 'Right on Road C', 'Left on Road B', 'Left on Road A']
+// console.log(direction(['Begin on Lua Pkwy', 'Right on Sixth Alley', 'Right on 1st Cr']));
 
 ////////////////////////////////////////////////////////////////////////
 const ul = document.querySelector(".bottom_block");
