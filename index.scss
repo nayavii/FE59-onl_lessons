@@ -1,0 +1,25 @@
+@mixin hover-active {
+    &:hover {
+      .no-touch & {
+        @content;
+      }
+    }
+    &:active {
+      .touch & {
+        @content;
+      }
+    }
+  }
+
+
+  .header__btn {
+    @hover-active;
+  }
+
+  .footer__btn {
+    @hover-active;
+  }
+
+  .slider__button {
+    @hover-active;
+  }
