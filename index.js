@@ -191,29 +191,29 @@ const len = (words) => {
 
 // !!!!!Это на ДЗ!!!!!!
 
-При помещении нового элемента в начало массива - все позиции смещаются на одну позицию, кроме тех,
-у которых isFixedPostion в положении true
+// При помещении нового элемента в начало массива - все позиции смещаются на одну позицию, кроме тех,
+// у которых isFixedPostion в положении true
 
-const array = [
-    {name: 'кукла', position: 1, isFixedPostion: false}
-    {name: 'дрель', position: 2, isFixedPostion: false},
-    {name: 'сметана', position: 3, isFixedPostion: false},
-    {name: 'штаны', position: 4, isFixedPostion: false},
-    {name: 'колесо', position: 5, isFixedPostion: false},
-];
+// const array = [
+//     {name: 'кукла', position: 1, isFixedPostion: false}
+//     {name: 'дрель', position: 2, isFixedPostion: false},
+//     {name: 'сметана', position: 3, isFixedPostion: false},
+//     {name: 'штаны', position: 4, isFixedPostion: false},
+//     {name: 'колесо', position: 5, isFixedPostion: false},
+// ];
 
-const addIntoStart = (array, newObje) => {
+// const addIntoStart = (array, newObje) => {
 
-    return newArra;
-}
+//     return newArra;
+// }
 
-addIntoStart(array, {name: 'торт', position: 1, isFixedPostion: false})
+// addIntoStart(array, {name: 'торт', position: 1, isFixedPostion: false})
 
-[
-    {name: 'молоко', position: 1, isFixedPostion: false},
-    {name: 'дрель', position: 2, isFixedPostion: true},
-    {name: 'кукла', position: 3, isFixedPostion: false},
-    {name: 'сметана', position: 4, isFixedPostion: false},
-    {name: 'штаны', position: 5, isFixedPostion: false},
-    {name: 'колесо', position: 6, isFixedPostion: false},
-];
+// [
+//     {name: 'молоко', position: 1, isFixedPostion: false},
+//     {name: 'дрель', position: 2, isFixedPostion: true},
+//     {name: 'кукла', position: 3, isFixedPostion: false},
+//     {name: 'сметана', position: 4, isFixedPostion: false},
+//     {name: 'штаны', position: 5, isFixedPostion: false},
+//     {name: 'колесо', position: 6, isFixedPostion: false},
+// ];
