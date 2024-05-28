@@ -62,7 +62,6 @@
 //     return array;
 //   }
 
-
 //   const array = [
 //     { name: 'кукла', position: 1, isFixedPostion: false },
 //     { name: 'дрель', position: 2, isFixedPostion: true },
@@ -94,47 +93,116 @@
 //     })
 // }
 
-
 // addIntoStart(array, {name: 'торт', position: 1, isFixedPosition: false});
 // console.log(array)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Одно из решений:
-  const array = [
-    { name: 'кукла', position: 1, isFixedPostion: false },
-    { name: 'дрель', position: 2, isFixedPostion: true },
-    { name: 'сметана', position: 3, isFixedPostion: false },
-    { name: 'штаны', position: 4, isFixedPostion: false },
-    { name: 'колесо', position: 5, isFixedPostion: true },
-  ];
+const array = [
+  { name: "духи", position: 1, isFixedPostion: false },
+  { name: "дрель", position: 2, isFixedPostion: true },
+  { name: "зефир", position: 3, isFixedPostion: true },
+  { name: "кукла", position: 4, isFixedPostion: false },
+  { name: "сметана", position: 5, isFixedPostion: true },
+];
 
-  const setCardIntoOrderedCardsList = (card, currentCardsList) => {
-    const initialFixedPositionCards = currentCardsList.reduce(
-        (result, item, index) => (item.isFixedPostion ? {...result, [index]: item} : result),
-        {},
-    );
+const addIntoStart = (array, newObje) => {
+  // создаем объект, в котором в качестве ключа будет позиция элемента,
+  // а в качестве знаени - сам элемент
+  // это будет промежуточный объект
+  // console.log(array, newObje)
+  const initialPositionsObj = array.reduce((result, item, index) => {
+    if (item.isFixedPostion) {
+      result[index] = item;
 
-    let position = 0;
+      return result;
+    }
 
-    const preparedCardsList = [card, ...currentCardsList];
+    return result;
+  }, {});
+  //===
+  // const initialPositionsObj = {
+  //   2: { name: "дрель", position: 2, isFixedPostion: true },
+  //   3: { name: "зефир", position: 3, isFixedPostion: true },
+  // };
 
-    const cards = preparedCardsList.reduce(
-        (result, item) => {
-            if (item?.isFixedPostion) return result;
+  let position = 0;
+  const preparedCardsList = [newObje, ...array];
 
-            while (result[position]) {
-                ++position;
-            }
+  const cards = preparedCardsList.reduce((result, item) => {
+    if (item.isFixedPostion) {
+      return result;
+    }
 
-            result[position] = {...item, position: ++position};
+    // const initialPositionsObj === result = {
+    //   2: { name: "дрель", position: 2, isFixedPostion: true },
+    //   3: { name: "зефир", position: 3, isFixedPostion: true },
+    // };
 
-            return result;
-        },
-        initialFixedPositionCards,
-    );
+    // const newArra = [
+    //   { name: "дрель", position: 2, isFixedPostion: true },
+    //   { name: "зефир", position: 3, isFixedPostion: true },
+    // ]
 
-    return Object.values(cards);
+    // Object.values(initialPositionsObj) = []
+
+    while (result[position]) {
+      ++position;
+      // position = position + 1;
+      // position += 1;
+    }
+
+    // const newItem = Object.assign(item);
+    // newItem.position = ++position
+
+    result[position] = { ...item, position: ++position };
+
+    // const a = {
+    //   name: "Jon",
+    //   age: 30,
+    // };
+
+    // const b = {
+    //   ...a,
+    //   // name: 'Jon',
+    //   // age: 30,
+    //   position: 2,
+    // };
+
+    return result;
+  }, initialPositionsObj);
+
+  return Object.values(cards);
 };
 
-// console.log(setCardIntoOrderedCardsList({ name: 'цветы', position: 1, isFixedPostion: false }, array))
-// console.log(setCardIntoOrderedCardsList({ name: 'игрушка', position: 1, isFixedPostion: false }, array))
+const newArray = addIntoStart(array, {
+  name: "торт",
+  position: 1,
+  isFixedPostion: false,
+});
+// const array = [
+//   { name: "духи", position: 1, isFixedPostion: false },
+//   { name: "дрель", position: 2, isFixedPostion: true },
+//   { name: "зефир", position: 3, isFixedPostion: true },
+//   { name: "кукла", position: 4, isFixedPostion: false },
+//   { name: "сметана", position: 5, isFixedPostion: false },
+// ];
+// ===
+// const newArray = [
+//   { name: "торт", position: 1, isFixedPostion: false }
+//   { name: "дрель", position: 2, isFixedPostion: true },
+//   { name: "зефир", position: 3, isFixedPostion: true },
+//   { name: "духи", position: 4, isFixedPostion: false },
+//   { name: "кукла", position: 5, isFixedPostion: false },
+//   { name: "сметана", position: 6, isFixedPostion: false },
+// ];
+console.log(array);
+console.log(newArray);
+
+const resultArray = addIntoStart(newArray, {
+  name: "леска",
+  position: 1,
+  isFixedPostion: false,
+});
+
+console.log(resultArray);
