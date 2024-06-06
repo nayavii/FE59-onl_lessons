@@ -78,12 +78,12 @@ console.log(usersWithAnimals);
 
 const getStringOfCarsNames = (users: IUser[]): string => {
   return users
-    .reduce((result, { cars }) => {
+    .reduce((result: string[], { cars }) => {
       if (cars) {
         result.push(...cars);
       }
       return result;
-    }, [] as string[])
+    }, [])
     .join(", ");
 };
 
@@ -119,14 +119,14 @@ class UserData {
   };
 
   getStringOfCarsNames(): string {
-    return this.users
-      .reduce((result, { cars }) => {
-        if (cars) {
-          result.push(...cars);
-        }
-        return result;
-      }, [] as string[])
-      .join(", ");
+    return users
+    .reduce((result: string[], { cars }) => {
+      if (cars) {
+        result.push(...cars);
+      }
+      return result;
+    }, [])
+    .join(", ");
   };
 }
 
