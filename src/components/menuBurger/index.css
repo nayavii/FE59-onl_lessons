@@ -1,0 +1,36 @@
+.menu__btn {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(22, 22, 143);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.menu__btn span {
+	width: 30px;
+	height: 2px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #ffffff;
+	transition: all 0.5s;
+}
+.menu__btn span:nth-of-type(2) {
+	top: calc(50% - 10px);
+}
+.menu__btn span:nth-of-type(3) {
+	top: calc(50% + 10px);
+}
+
+.menu__btn.open span:nth-of-type(1) {
+  display: none;
+}
+.menu__btn.open span:nth-of-type(2) {
+  top: 50%;
+  transform: translate(-50%, 0%) rotate(45deg);  
+}
+.menu__btn.open span:nth-of-type(3) {
+  top: 50%;
+  transform: translate(-50%, 0%) rotate(-45deg); 
+}

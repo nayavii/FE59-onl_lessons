@@ -1,0 +1,30 @@
+.alert {
+  border: 2px solid #2c2c2c;
+  background-color: #d4d4d4;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px 12px;
+  align-items: center;
+  width: 600px;
+  margin-bottom: 10px;
+}
+
+.alert__info {
+  display: flex; 
+  gap: 20px;
+  align-items: center;
+  
+}
+
+.alert__status {
+
+  font-size: 23px;
+
+}
+
+.alert__close {
+  width: 15px;
+  height: 15px;
+  
+  
+}
