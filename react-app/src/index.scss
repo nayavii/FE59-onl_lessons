@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #000000;
+  font-weight: 400;
+  line-height: 21px;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+a { 
+  text-decoration: none;
+}
+.container {
+  max-width: 1170px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.title {
+	font-size: 36px;
+	font-weight: 600;
+	line-height: 25px;
+	margin-bottom: 50px;
+}
+
+.input-error {
+	margin-bottom: 20px;
+	color: rgba(253, 4, 4, 0.883);
+	text-align: center;
+}

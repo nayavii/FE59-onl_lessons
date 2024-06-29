@@ -1,0 +1,20 @@
+.success {
+  padding: 50px 0;
+  
+  &__wrapper {
+    margin: 0 auto;
+    max-width: 500px;
+    
+  }
+
+  &__text {
+    margin-bottom: 50px;
+  }
+
+
+
+  &__btn {
+    width: 100%;
+
+  }
+}

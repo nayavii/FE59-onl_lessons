@@ -1,0 +1,46 @@
+.todo {
+  width: 100%;
+  margin: 20px 0 10px;
+  background-color: #53beae33;
+  padding: 30px 25px;
+  border-radius: 55px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__rigth {
+    display: flex;
+    align-items: center;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__completed {
+    border: 2px solid #464343;
+    width: 25px;
+    height: 25px;
+  }
+
+  &_black {
+    background-color: #434243;
+
+    
+  }
+
+  &__right {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__title {
+    cursor: pointer;
+  }
+}
+  

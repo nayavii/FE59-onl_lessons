@@ -1,0 +1,55 @@
+.header {
+  $self: &;
+  padding: 20px 0;
+  background-color: #e5f6fb;
+
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+  }
+
+  &__logo img{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+
+  }
+  
+  &__menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 20px
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  &__btn {
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+  }
+
+
+  &_black {
+    background-color: #1f1f1f;
+
+    #{$self}__btn {
+      color: #f0f8ff;
+
+    }
+
+  }
+}
+

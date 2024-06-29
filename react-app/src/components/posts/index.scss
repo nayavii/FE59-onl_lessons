@@ -1,0 +1,73 @@
+.posts {
+  $self: &;
+
+  &__wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: 
+    'post-0 post-0 post-5'
+    'post-0 post-0 post-6'
+    'post-1 post-2 post-7'
+    'post-1 post-2 post-8'
+    'post-3 post-4 post-9'
+    'post-3 post-4 post-10'
+    ;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    &_flex {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__nav {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+
+  }
+
+  &__nav-btn {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: background-color 0.2s linear;
+    border-radius: 20px;
+
+    &_active {
+      background-color: #53beae33;
+    }
+    
+  }
+
+  &__search {
+    margin: 10px 0 20px;
+    width: 100%;
+    border: 3px solid #49a799;
+    border-radius: 25px;
+    padding: 10px 15px;
+
+  }
+
+  &_black {
+
+    #{$self}__nav-btn {
+      color: #fafafa;
+
+  
+      &_active {
+        background-color: #ffffff;
+        color: #313131;
+      }
+      
+    }
+
+    #{$self}__search {
+      background-color: #453e45;
+      border: 3px solid #ffffff;
+    }
+
+  }
+
+
+}

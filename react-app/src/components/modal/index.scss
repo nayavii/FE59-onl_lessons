@@ -1,0 +1,57 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: #282828a8;
+  color: #f0f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__wrapper {
+    width: 250px;
+    background-color: #282828;
+    padding: 25px 20px;
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  &__input {
+    margin: 5px 0 20px;
+    width: 100%;
+    border: 2px solid #ffc0f8;
+    border-radius: 25px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+  }
+
+  &__button {
+    width: 100px;
+    padding: 10px 25px;
+    border-radius: 25px;
+    transition: all .5s linear;
+  }
+
+  &__cancel {
+    background-color: #9a9a9a;
+
+    &:hover {
+      background-color: #484848;
+    }
+  }
+
+  &__login {
+    background-color: #ffc0f8;
+
+    &:hover {
+      background-color: #f966e8;
+    }
+  }
+}

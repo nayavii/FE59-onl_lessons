@@ -1,0 +1,45 @@
+.register {
+  $self: &;
+  padding: 50px 0;
+  
+  &__wrapper {
+    margin: 0 auto;
+    max-width: 500px;
+    
+  }
+
+
+  &__input {
+    margin: 10px 0 20px;
+    width: 100%;
+    border: 3px solid #49a799;
+    border-radius: 25px;
+    padding: 10px 15px;
+  }
+
+  &__btn {
+    padding: 15px 35px;
+    width: 100%;
+
+  }
+
+  &__text {
+    font-size:  16px;
+    margin-top: 20px;
+  }
+
+  &__link {
+    cursor: pointer;
+    font-size:  16px;
+    font-weight: 500;
+    color: #49a799;
+  }
+
+  &_black {
+    #{$self}__input {
+      background-color: #453e45;
+      border: 3px solid #ffffff;
+      color: #ffffff;
+    }
+  }
+}

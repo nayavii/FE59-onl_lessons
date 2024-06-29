@@ -1,0 +1,35 @@
+.todos {
+  $self: &;
+  text-align: center;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+
+  &__input {
+    margin: 10px 0 20px;
+    width: 100%;
+    border: 3px solid #018591;
+    border-radius: 25px;
+    padding: 10px 15px;
+  }
+
+  &__btn {
+    margin-right: 10px;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  &_black {
+    
+    #{$self}__input {
+      background-color: #453e45;
+      border: 3px solid #ffffff;
+
+    }
+
+    
+  }
+
+}

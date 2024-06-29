@@ -1,0 +1,51 @@
+.button {
+  $self: &;
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 10px 35px;
+  transition: all 0.5s ease;
+  width: fit-content;
+  font-size: 16px;
+  font-weight: 600;
+
+  &_fill {
+    background-color: #49a799;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #013d3f;
+    }
+  }
+
+  &_outline {
+    background-color: transparent;
+    border: 2px solid #49a799;
+    color: #49a799;
+
+    &:hover {
+      border: 2px solid #013d3f;
+      color: #013d3f;
+    }
+  }
+
+  &_black {
+    &.button_fill {
+      background-color: #f7f7f7;
+      color: #1f1f1f;
+
+      &:hover {
+        background-color: #5b5b5b;
+      }
+    }
+
+    &.button_outline {
+      border: 2px solid #f7f7f7;
+      color: #f7f7f7;
+
+      &:hover {
+        border: 2px solid #5b5b5b;
+        color: #5b5b5b;
+      }
+    }
+  }
+}

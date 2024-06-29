@@ -1,0 +1,10 @@
+.board {
+  display: grid;
+  grid-gap: 1px;
+  grid-template-areas:
+    "square-0 square-1 square-2"
+    "square-3 square-4 square-5"
+    "square-6 square-7 square-8";
+  grid-template-columns: 1fr 1fr 1fr;
+  
+}
