@@ -3,8 +3,19 @@ import { Button } from "../button";
 import BannerImg from "./images/banner.jpg";
 import "./index.scss";
 import { MyContext } from "../hooks/context.hook";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export class Banner extends React.Component {
+// это обертка над классовмы компонентом что бы ему передать хуки из реакт роутер дома
+export const Banner = (props) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  return (
+    <View {...props} location={location} navigate={navigate} />
+  );
+};
+
+export class View extends React.Component {
   interval;
   
 

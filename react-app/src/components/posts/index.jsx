@@ -3,15 +3,16 @@ import { Post } from "../post/index.jsx";
 import { useContext, useState } from "react";
 import "./index.scss";
 import { MyContext } from "../hooks/context.hook.jsx";
+import { useNavigate, useParams } from "react-router-dom";
 
-export const Posts = ({ setPage, setCurrentPost }) => {
+export const Posts = () => {
   const { isBlackTheme } = useContext(MyContext);
   const [posts, setPosts] = useState(postsData);
   const [filterValue, setFilterValue] = useState("all");
-
   const [searchValue, setSearchValue] = useState("");
-
-  console.log(filterValue);
+  const { filter } = useParams();
+  const navigate = useNavigate()
+  console.log(filter);
 
   // useEffect(() => {
   //   fetch("https://studapi.teachmeskills.by/blog/posts/")
@@ -39,14 +40,17 @@ export const Posts = ({ setPage, setCurrentPost }) => {
   });
 
   const handleAllClick = () => {
+    navigate("/blog/all");
     setFilterValue("all");
   };
 
   const handleFavClick = () => {
+    navigate("/blog/favorites");
     setFilterValue("favorite");
   };
 
   const handlePopClick = () => {
+    navigate("/blog/popular");
     setFilterValue("popular");
   };
 
@@ -107,16 +111,7 @@ export const Posts = ({ setPage, setCurrentPost }) => {
                 size = "small";
               }
             }
-            return (
-              <Post
-                post={item}
-                index={index}
-                key={item.id}
-                size={size}
-                setPage={setPage}
-                setCurrentPost={setCurrentPost}
-              />
-            );
+            return <Post post={item} index={index} key={item.id} size={size} />;
           })}
         </div>
       </div>

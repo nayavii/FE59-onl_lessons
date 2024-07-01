@@ -1,10 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../button';
 import './index.scss';
 
-export const RegisterSuccess = ({setPage}) => {
-
+export const RegisterSuccess = () => {
+  const navigate = useNavigate();
   const handleClick = ()=> {
-    setPage('home');
+    navigate('/');
   }
 
   return (

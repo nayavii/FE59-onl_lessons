@@ -1,0 +1,36 @@
+.notFound {
+  height: calc(100vh - 85px);
+  overflow-x: hidden;
+  background: #000 url("./images/404.jpg") no-repeat center center / cover;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  &__title {
+    font-size: 150px;
+  }
+
+  &__text {
+    font-size: 50px;
+    margin: 100px 0;
+  }
+
+  &__btn {
+    cursor: pointer;
+    border-radius: 45px;
+    padding: 10px 35px;
+    transition: all 0.5s ease;
+    width: fit-content;
+    color: #ffffff;
+    font-size: 35px;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+
+    &:hover {
+      border: 2px solid #013d3f;
+      color: #013d3f;
+    }
+  }
+}

@@ -2,8 +2,9 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "./index.scss";
 import { Button } from "../button";
 import { MyContext } from "../hooks/context.hook";
+import { useNavigate } from "react-router-dom";
 
-export const Register = ({ setPage }) => {
+export const Register = () => {
   const {isBlackTheme} = useContext(MyContext);
 
   const [values, setValues] = useState({
@@ -12,6 +13,8 @@ export const Register = ({ setPage }) => {
     password: "",
     passwordConfirm: "",
   });
+
+  const navigate = useNavigate();
 
   const inputRefName = useRef(null); // {current: null}
   const inputConfirmPassRef = useRef(null); 
@@ -38,7 +41,7 @@ export const Register = ({ setPage }) => {
         setErrors({});
       }
       console.log("Отправляем все данные в values на сервер: ", values);
-      setPage("registerSuccess");
+      navigate("/registerSuccess");
     } else {
       setErrors({ passwordConfirm: "Пароли не совпадают" });
       inputConfirmPassRef.current.focus();
@@ -46,7 +49,7 @@ export const Register = ({ setPage }) => {
   };
 
   const handleLogin = () => {
-    setPage("login");
+    navigate("/login");
   };
 
   return (

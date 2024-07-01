@@ -2,19 +2,13 @@ import likeIcon from "./images/like_icon.png";
 import dislikeIcon from "./images/dislike_icon.png";
 import saveIcon from "./images/save_icon.png";
 import optionsIcon from "./images/options_icon.png";
-import "./index.scss";
 import { useContext } from "react";
 import { MyContext } from "../hooks/context.hook";
+import { Link } from "react-router-dom";
+import "./index.scss";
 
-export const Post = ({ size, post, index, setCurrentPost }) => {
-  const {isBlackTheme} = useContext(MyContext);
-  const className = size ? `post post_${size}` : "post";
-
-  const handleClick = () => {
-    setCurrentPost(post)
-  }
-  
-
+export const Post = ({ size, post, index }) => {
+  const { isBlackTheme } = useContext(MyContext);
 
   return (
     <div
@@ -25,18 +19,20 @@ export const Post = ({ size, post, index, setCurrentPost }) => {
         <div className="post__wrapper">
           <div className="post__info">
             <p className="post__date">{post.date}</p>
-            <h3 className="post__title" onClick={handleClick}>
+            <Link to={`${post.id}`} className="post__title">
               {post.title}
-            </h3>
+            </Link>
+
             <p className="post__text">{post.text}</p>
           </div>
-          <div className="post__img">
-            <img src={post.image} alt="" onClick={handleClick} />
-          </div>
+
+          <Link to={`${post.id}`} className="post__img">
+            <img src={post.image} alt="Image" />
+          </Link>
         </div>
         <div className="post__actions">
           <div className="post__likes">
-            <img src={likeIcon} onClick={handleClick} alt="Like" className="post__icon" />
+            <img src={likeIcon} alt="Like" className="post__icon" />
             <img src={dislikeIcon} alt="Dislike" className="post__icon" />
           </div>
           <div className="post__options">

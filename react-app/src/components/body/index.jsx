@@ -9,25 +9,37 @@ import "./index.scss";
 import { Register } from "../register";
 import { RegisterSuccess } from "../successRegister";
 import { Game } from "../game/main";
+import { Route, Routes } from "react-router-dom";
+import { NotFound } from "../not-found";
 
-export const Body = ({page, isShowModal, setIsShowModal, isBlackTheme, setPage}) => {
-
-  
-
+export const Body = ({ isShowModal, setIsShowModal, isBlackTheme }) => {
   return (
-    <section className={isBlackTheme ? 'black-theme' : ''}>
+    <section className={isBlackTheme ? "black-theme" : ""}>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Banner
+              setIsShowModal={setIsShowModal}
+              isBlackTheme={isBlackTheme}
+            />
+          }
+        />
+        <Route path="/blog/:filter" element={<Blog />} />
+        <Route path="/blog/:filter/:postId" element={<Article />} />
+        <Route path="/todos" element={<Todos />} />
+        <Route path="/game" element={<Game />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="loginSuccess" element={<LoginSuccess />} />
+        <Route path="registerSuccess" element={<RegisterSuccess />} />
+
       
-      {page === "home" && <Banner setIsShowModal={setIsShowModal} isBlackTheme={isBlackTheme} />}
-      {page === "blog" && <Blog setPage={setPage} />}
-      {page === "todos" && <Todos  />}
-      {page === "login" && <Login setPage={setPage} />}
-      {page === "register" && <Register setPage={setPage}  />}
-      {page === "loginSuccess" && <LoginSuccess setPage={setPage} />}
-      {page === "registerSuccess" && <RegisterSuccess setPage={setPage}  />}
-      {page === "article" && <Article />}
-      {page === "game" && <Game />}
-      {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
-      {/* {isShowModal && <Modal /> }  */}
+
+        {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
+        {/* {isShowModal && <Modal /> }  */}
+      </Routes>
     </section>
   );
 };

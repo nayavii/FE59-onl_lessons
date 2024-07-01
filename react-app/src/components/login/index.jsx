@@ -2,14 +2,17 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "./index.scss";
 import { Button } from "../button";
 import { MyContext } from "../hooks/context.hook";
+import { useNavigate } from "react-router-dom";
 
-export const Login = ({ setPage }) => {
-  const {isBlackTheme} = useContext(MyContext);
+export const Login = () => {
+  const { isBlackTheme } = useContext(MyContext);
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
   console.log(values);
+
+  const navigate = useNavigate();
 
   const inputRefName = useRef(null); // {current: null}
 
@@ -28,11 +31,11 @@ export const Login = ({ setPage }) => {
 
   const handleLogin = () => {
     console.log("Отправляем все данные в values на сервер: ", values);
-    setPage("loginSuccess");
+    navigate("/loginSuccess");
   };
 
   const handleRegister = () => {
-    setPage("register");
+    navigate("/register");
   };
 
   return (

@@ -23,11 +23,13 @@
   }
 
   &__title {
+    display: block;
     font-size: 30px;
     font-weight: 600;
     line-height: 25px;
     margin-bottom: 30px;
     cursor: pointer;
+    color: #343434;
   }
 
   &__text {
@@ -92,8 +94,6 @@
     #{$self}__img {
       width: 100%;
       height: 200px;
-
-
     }
 
     #{$self}__title {
@@ -108,7 +108,7 @@
 
   &_small {
     padding: 20px 10px;
-    
+
     #{$self}__text {
       display: none;
     }
@@ -153,8 +153,13 @@
   &_black {
     background-color: #6d6d6d;
 
-    #{$self}__date {
+    #{$self}__date,
+    #{$self}__title {
       color: #d1d1d1;
+    }
+
+    #{$self}__title {
+      color: #ffffff;
     }
 
     #{$self}__line {
