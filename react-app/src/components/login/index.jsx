@@ -1,11 +1,12 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import "./index.scss";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../button";
-import { MyContext } from "../hooks/context.hook";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import "./index.scss";
+import { getBlackTheme } from "../../selectors";
 
 export const Login = () => {
-  const { isBlackTheme } = useContext(MyContext);
+  const isBlackTheme = useSelector(getBlackTheme);
   const [values, setValues] = useState({
     email: "",
     password: "",

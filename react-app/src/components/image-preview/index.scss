@@ -1,0 +1,50 @@
+.image-preview {
+  $self: &;
+  position: fixed;
+  inset: 0;
+  background-color: #8e8e8e50;
+  display: flex;
+  align-items: center;
+
+  &__wrapper {
+    padding: 30px 40px;
+    height: auto;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    margin: auto;
+  }
+
+
+
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 250px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__actions {
+    text-align: center;
+    margin-top: 25px;
+
+  }
+
+  &_black {
+    background-color: #6d6d6d;
+
+    #{$self}__date,
+    #{$self}__title {
+      color: #d1d1d1;
+    }
+
+    #{$self}__title {
+      color: #ffffff;
+    }
+  }
+}

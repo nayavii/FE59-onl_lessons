@@ -1,13 +1,15 @@
-import { surfChecklist } from "./mock-data.js";
-import "./index.scss";
-import { useCallback, useContext, useEffect, useId, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Spinner } from "../spinner/index.jsx";
 import { Button } from "../button/index.jsx";
 import { Todo } from "../todo/index.jsx";
-import { MyContext } from "../hooks/context.hook.jsx";
+import { surfChecklist } from "./mock-data.js";
+import { getBlackTheme } from "../../selectors/index.js";
+import "./index.scss";
 
 export const Todos = () => {
-  const {isBlackTheme} = useContext(MyContext);
+  // const {isBlackTheme} = useContext(MyContext);
+  const isBlackTheme = useSelector(getBlackTheme);
 
   const [data, setData] = useState(surfChecklist);
   const [isLoading, setIsLoading] = useState(false);
@@ -118,7 +120,7 @@ export const Todos = () => {
   };
 
   return (
-    <div className={`todos ${isBlackTheme ? 'todos_black' : ''}` }>
+    <div className={`todos ${isBlackTheme ? "todos_black" : ""}`}>
       <div className="container">
         <h2 className="todos__title title">Surfer Todos</h2>
         <div className="todos__from">
@@ -153,8 +155,6 @@ export const Todos = () => {
             title={"Show completed"}
             onClick={handleShowCompletedTodo}
           />
-
-
         </div>
         <ul className="todos__list">
           {data

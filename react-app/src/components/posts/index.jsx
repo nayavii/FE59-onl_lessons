@@ -1,88 +1,114 @@
-import { postsData } from "./mock-data.js";
-import { Post } from "../post/index.jsx";
-import { useContext, useState } from "react";
-import "./index.scss";
-import { MyContext } from "../hooks/context.hook.jsx";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Post } from "../post/index.jsx";
+import { postsData } from "./mock-data.js";
+import "./index.scss";
+import {
+  addImagesAction,
+  addPostSAction,
+  changeTabAction,
+} from "../../actions/index.js";
+import { Spinner } from "../spinner/index.jsx";
+import { getBlackTheme, getPosts, getTab } from "../../selectors/index.js";
 
 export const Posts = () => {
-  const { isBlackTheme } = useContext(MyContext);
-  const [posts, setPosts] = useState(postsData);
-  const [filterValue, setFilterValue] = useState("all");
-  const [searchValue, setSearchValue] = useState("");
   const { filter } = useParams();
-  const navigate = useNavigate()
-  console.log(filter);
+  const isBlackTheme = useSelector(getBlackTheme);
+  // const [posts, setPosts] = useState([]);
+  // const [filterValue, setFilterValue] = useState(filter);
+  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   fetch("https://studapi.teachmeskills.by/blog/posts/")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setPosts(data)
-  //     });
-  // }, []);
+  const posts = useSelector(getPosts);
+  const tab = useSelector(getTab);
 
-  const isAll = filterValue === "all";
-  const isFavorites = filterValue === "favorite";
-  const isPopular = filterValue === "popular";
+  //в реальной жизни
+  useEffect(() => {
+    // dispatch(changeTabAction(filter));
 
-  const filteredPosts = posts.filter((post) => {
-    const postsToSearch =
-      post.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-      post.text.toLowerCase().includes(searchValue.toLowerCase());
+    fetch("https://studapi.teachmeskills.by/blog/posts/")
+      .then((response) => response.json())
+      .then(({ results }) => {
+        // console.log(results);
+        // setPosts(results)
+        // setPosts(postsData)
+        dispatch(addPostSAction(postsData));
+        dispatch(addImagesAction(postsData.map(({ image }) => image)));
+      });
+  }, []);
 
-    if (!postsToSearch) return false;
+  const isAll = tab === "all";
+  const isFavorites = tab === "favorite";
+  const isPopular = tab === "popular";
 
-    if (isAll) return post;
-    if (isFavorites) return post.favorites;
-    return post.popular;
-  });
+  // const filteredPosts = posts.filter((post) => {
+  //   const postsToSearch =
+  //     post.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+  //     post.text.toLowerCase().includes(searchValue.toLowerCase());
 
-  const handleAllClick = () => {
-    navigate("/blog/all");
-    setFilterValue("all");
+  //   if (!postsToSearch) return false;
+
+  //   if (isAll) return post;
+  //   if (isFavorites) return post.favorites;
+  //   return post.popular;
+  // });
+
+  const handleClick = (path) => {
+    return () => {
+      dispatch(changeTabAction(path));
+      navigate(`/blog/${path}`);
+    };
   };
 
-  const handleFavClick = () => {
-    navigate("/blog/favorites");
-    setFilterValue("favorite");
-  };
+  // const handleAllClick = () => {
+  //   navigate("/blog/all");
+  //   setFilterValue("all");
+  // };
 
-  const handlePopClick = () => {
-    navigate("/blog/popular");
-    setFilterValue("popular");
-  };
+  // const handleFavClick = () => {
+  //   navigate("/blog/favorites");
+  //   setFilterValue("favorite");
+  // };
+
+  // const handlePopClick = () => {
+  //   navigate("/blog/popular");
+  //   setFilterValue("popular");
+  // };
 
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
+
+  if (!posts) {
+    return <Spinner />;
+  }
 
   return (
     <section className={`posts  ${isBlackTheme ? "posts_black" : ""}`}>
       <div className="container">
         <div className="posts__nav">
           <button
-            className={`posts__nav-btn ${
-              filterValue === "all" ? "posts__nav-btn_active" : ""
-            }`}
-            onClick={handleAllClick}
+            className={`posts__nav-btn ${isAll ? "posts__nav-btn_active" : ""}`}
+            // onClick={handleAllClick}
+            onClick={handleClick("all")}
           >
             All
           </button>
           <button
             className={`posts__nav-btn ${
-              filterValue === "favorite" ? "posts__nav-btn_active" : ""
+              isFavorites ? "posts__nav-btn_active" : ""
             }`}
-            onClick={handleFavClick}
+            onClick={handleClick("favorite")}
           >
             My favorites
           </button>
           <button
             className={`posts__nav-btn ${
-              filterValue === "popular" ? "posts__nav-btn_active" : ""
+              isPopular ? "posts__nav-btn_active" : ""
             }`}
-            onClick={handlePopClick}
+            onClick={handleClick("popular")}
           >
             Popular
           </button>
@@ -101,7 +127,8 @@ export const Posts = () => {
             isFavorites || isPopular ? "posts__wrapper_flex" : ""
           }`}
         >
-          {filteredPosts.map((item, index) => {
+          {
+            /* {filteredPosts.map((item, index) => {
             let size = "large";
 
             if (isAll) {
@@ -112,7 +139,38 @@ export const Posts = () => {
               }
             }
             return <Post post={item} index={index} key={item.id} size={size} />;
-          })}
+          })} */
+
+            posts?.reduce((result, post, index) => {
+              if (
+                isAll ||
+                (isFavorites && post.favorites) ||
+                (isPopular && post.popular)
+              ) {
+                if (
+                  post.title
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase()) ||
+                  post.text.toLowerCase().includes(searchValue.toLowerCase())
+                ) {
+                  let size = "large";
+
+                  if (isAll) {
+                    if (index >= 1 && index <= 4) {
+                      size = "medium";
+                    } else if (index > 4) {
+                      size = "small";
+                    }
+                  }
+                  // Добавление отфильтрованных и модифицированных постов в аккумулятор
+                  result.push(
+                    <Post post={post} index={index} key={post.id} size={size} />
+                  );
+                }
+              }
+              return result;
+            }, [])
+          }
         </div>
       </div>
     </section>

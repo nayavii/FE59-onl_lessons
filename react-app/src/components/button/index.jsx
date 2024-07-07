@@ -1,10 +1,10 @@
-// import { useState } from "react";
-import { memo, useContext } from "react";
+import { memo } from "react";
+import { useSelector } from "react-redux";
 import "./index.scss";
-import { MyContext } from "../hooks/context.hook";
+import { getBlackTheme } from "../../selectors";
 
 const View = ({ title, isOutlineButton, className='', onClick }) => {
-  const {isBlackTheme} = useContext(MyContext);
+  const isBlackTheme = useSelector(getBlackTheme);
 // export const Button = ({ title, isOutlineButton, className, onClick }) => {
   // const [isActiveBtn, setIsActiveBtn] = useState(false);
   // console.log(isActiveBtn); //false -- содержит начальное значение

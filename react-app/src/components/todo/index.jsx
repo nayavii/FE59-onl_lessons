@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import './index.scss';
+import { useSelector } from 'react-redux';
 import { Button } from '../button';
+import './index.scss';
+import { getBlackTheme } from '../../selectors';
 
-export const Todo = ({ todo, handleChange, handleDelete, handleEdit, isBlackTheme }) => {
-
+export const Todo = ({ todo, handleChange, handleDelete, handleEdit }) => {
+  const isBlackTheme = useSelector(getBlackTheme);
   const [isEdit, setIsEdit] = useState(false);
   const [value, setValue] = useState(todo.title);
 

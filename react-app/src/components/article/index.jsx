@@ -1,9 +1,9 @@
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button } from "../button";
 import { useEffect, useState } from "react";
 import { postsData } from "../posts/mock-data.js";
-import "./index.scss";
 import { Spinner } from "../spinner/index.jsx";
+import "./index.scss";
 
 export const Article = () => {
   const { postId } = useParams();
@@ -37,6 +37,7 @@ export const Article = () => {
   const handleClick = () => {
     // navigate("/blog");
     navigate(-1); // возврат на предыдущую страницу
+    // navigate('/blog/all'); // возврат на предыдущую страницу
   };
 
   if (!post) {

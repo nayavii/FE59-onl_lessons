@@ -1,7 +1,9 @@
 .game {
-  min-height: 200px;
-  padding: 150px 50px;
+  height: calc(100vh - 85px);
+  padding: 80px 50px;
   background: #000 url('./images/bg.jpg') no-repeat center center / cover;
+
+
 
   &__wrapper {
     display: flex;
@@ -9,8 +11,8 @@
     justify-content: center;
   }
 
-  &__sufr {
-    width: 10px;
-    height: 10px;
-  }
+  // &__sufr {
+  //   width: 10px;
+  //   height: 10px;
+  // }
 }

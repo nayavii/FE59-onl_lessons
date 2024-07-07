@@ -1,15 +1,15 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../button";
 import { ModeButton } from "../mode-btn";
 import Logo from "./images/logo.png";
 import LogoWhite from "./images/logo_white.png";
-import { MyContext } from "../hooks/context.hook";
 import "./index.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { getBlackTheme } from "../../selectors";
 
-export const Header = ({ handleChangeTheme }) => {
-  const { isBlackTheme } = useContext(MyContext);
-  const navigate = useNavigate()
+export const Header = () => {
+  const isBlackTheme = useSelector(getBlackTheme);
+  const navigate = useNavigate();
 
   const handleSingInClick = () => {
     navigate("login");
@@ -82,7 +82,7 @@ export const Header = ({ handleChangeTheme }) => {
               onClick={handleRegister}
               isOutlineButton={true}
             />
-            <ModeButton handleChangeTheme={handleChangeTheme} />
+            <ModeButton />
           </div>
         </div>
       </div>
