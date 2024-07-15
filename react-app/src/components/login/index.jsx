@@ -73,10 +73,10 @@ export const Login = () => {
             onClick={handleLogin}
           />
           <p className="login__text">
-            Нет аккаунта? Ноу проблем. Нажми на{" "}
-            <a onClick={handleRegister} className="login__link">
+            Нет аккаунта? Ноу проблем. Нажми на
+            <span onClick={handleRegister} className="login__link">
               Sing Up
-            </a>{" "}
+            </span>
           </p>
         </div>
       </div>

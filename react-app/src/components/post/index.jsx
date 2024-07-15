@@ -7,6 +7,7 @@ import {
   likeAction,
   dislikeAction,
   favoriteAction,
+  addPostByIdAction,
 } from "../../actions";
 import likeIcon from "./images/like_icon.svg";
 import dislikeIcon from "./images/dislike_icon.svg";
@@ -38,7 +39,7 @@ export const Post = ({ size, post, index }) => {
   };
 
   const handlePreview = () => {
-    dispatch(addPostAction(post));
+    dispatch(addPostByIdAction(post));
   };
 
   return (

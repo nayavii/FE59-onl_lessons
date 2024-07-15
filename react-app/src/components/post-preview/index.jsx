@@ -10,7 +10,7 @@ export const PostPreview = () => {
   const post = useSelector(getPost);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { filter } = useParams();
+  
 
   const handlePreviewClose = () => {
     dispatch(DELETE_POST_ACTION);

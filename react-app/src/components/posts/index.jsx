@@ -7,7 +7,9 @@ import "./index.scss";
 import {
   addImagesAction,
   addPostSAction,
+  addPostsMiddlewareActions,
   changeTabAction,
+  REQUEST_POSTS_ACTION,
 } from "../../actions/index.js";
 import { Spinner } from "../spinner/index.jsx";
 import { getBlackTheme, getPosts, getTab } from "../../selectors/index.js";
@@ -26,17 +28,10 @@ export const Posts = () => {
 
   //в реальной жизни
   useEffect(() => {
-    // dispatch(changeTabAction(filter));
+    dispatch(changeTabAction(filter));
 
-    fetch("https://studapi.teachmeskills.by/blog/posts/")
-      .then((response) => response.json())
-      .then(({ results }) => {
-        // console.log(results);
-        // setPosts(results)
-        // setPosts(postsData)
-        dispatch(addPostSAction(postsData));
-        dispatch(addImagesAction(postsData.map(({ image }) => image)));
-      });
+    dispatch(addPostsMiddlewareActions())
+
   }, []);
 
   const isAll = tab === "all";
@@ -81,7 +76,7 @@ export const Posts = () => {
     setSearchValue(e.target.value);
   };
 
-  if (!posts) {
+  if (posts.loading || !posts.loaded) {
     return <Spinner />;
   }
 
@@ -141,7 +136,7 @@ export const Posts = () => {
             return <Post post={item} index={index} key={item.id} size={size} />;
           })} */
 
-            posts?.reduce((result, post, index) => {
+            posts.content?.reduce((result, post, index) => {
               if (
                 isAll ||
                 (isFavorites && post.favorites) ||

@@ -4,40 +4,36 @@ import { useEffect, useState } from "react";
 import { postsData } from "../posts/mock-data.js";
 import { Spinner } from "../spinner/index.jsx";
 import "./index.scss";
+import {
+  addPostByIdMiddlewareActions,
+  addPostsMiddlewareActions,
+  DELETE_POST_ACTION,
+  REQUEST_POST_ACTION,
+} from "../../actions/index.js";
+import { useDispatch, useSelector } from "react-redux";
+import { getPost, getTab } from "../../selectors/index.js";
 
 export const Article = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const [post, setPost] = useState(null);
+  const dispatch = useDispatch();
+  // const [post, setPost] = useState(null);
+  const post = useSelector(getPost);
+  console.log(post);
+  console.log(postId);
+  const tab = useSelector(getTab);
 
   useEffect(() => {
-
-    console.log("useLocation", location);
-    console.log("window.location", window.location);
-    // setTimeout(() => {
-    fetch(`https://jsonplaceholder.typicode.com/todows/${postId}`)
-      // ниже правильный рабочий вариант
-      // .then((res) => setPost(res));
-      // ниже НЕправильный рабочий вариант чисто на тестовых данных
-      .then((res) => {
-        const currentPost = postsData.find((post) => post.id === +postId);
-
-        if (currentPost) {
-          // если id в браузерной строке есть среди тестовых данных
-          setPost(currentPost);
-        } else {
-          navigate("/404");
-        }
-      })
-      .catch((e) => console.log(e));
-    // }, 1000);
-  }, []);
+    dispatch(addPostByIdMiddlewareActions(postId));
+  }, [dispatch, postId]);
 
   const handleClick = () => {
+    dispatch(DELETE_POST_ACTION)
     // navigate("/blog");
-    navigate(-1); // возврат на предыдущую страницу
+    // navigate(-1); // возврат на предыдущую страницу
     // navigate('/blog/all'); // возврат на предыдущую страницу
+    navigate(`/blog/${tab}`)
   };
 
   if (!post) {

@@ -3,12 +3,16 @@
   
   &__wrapper {
     margin: 0 auto;
-    max-width: 500px;
+    max-width: 600px;
     
   }
 
   &__text {
     margin-bottom: 50px;
+
+    span {
+      font-weight: 600;
+    }
   }
 
 
