@@ -4,8 +4,9 @@ import { Spinner } from "../spinner/index.jsx";
 import { Button } from "../button/index.jsx";
 import { Todo } from "../todo/index.jsx";
 import { surfChecklist } from "./mock-data.js";
-import { getBlackTheme } from "../../selectors/index.js";
+
 import "./index.scss";
+import { getBlackTheme } from "../../store/selectors/index.js";
 
 export const Todos = () => {
   // const {isBlackTheme} = useContext(MyContext);

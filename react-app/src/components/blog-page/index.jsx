@@ -1,9 +1,10 @@
+import "./index.scss";
 import { useSelector } from "react-redux";
 import { Posts } from "../posts/index.jsx";
 import { PostPreview } from "../post-preview/index.jsx";
 import { ImagePreview } from "../image-preview/index.jsx";
-import "./index.scss";
-import { getImage, getPost } from "../../selectors/index.js";
+import { getImage, getPost } from "../../store/selectors/index.js";
+
 
 export const BlogPage = () => {
 

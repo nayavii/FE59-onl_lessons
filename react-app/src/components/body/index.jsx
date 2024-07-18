@@ -1,3 +1,4 @@
+import "./index.scss";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { BlogPage } from "../blog-page";
@@ -11,8 +12,9 @@ import { Game } from "../game/main";
 import { NotFound } from "../not-found";
 import { MainPage } from "../main-page";
 import { TodosPage } from "../todos-page";
-import "./index.scss";
-import { getBlackTheme } from "../../selectors";
+import { ActivationEmailPage } from "../activation-email";
+import { getBlackTheme } from "../../store/selectors";
+import { UserProfile } from "../user-profile";
 
 export const Body = ({ isShowModal, setIsShowModal }) => {
   const isBlackTheme = useSelector(getBlackTheme);
@@ -40,9 +42,11 @@ export const Body = ({ isShowModal, setIsShowModal }) => {
         <Route path="register" element={<Register />} />
         <Route path="loginSuccess" element={<LoginSuccess />} />
         <Route path="registerSuccess" element={<RegisterSuccess />} />
+        <Route path="activate/:uid/:token" element={<ActivationEmailPage />} />
+        {/* <Route path="my-profile" element={<UserProfile />} /> */}
       </Routes>
-      {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
-      {/* {isShowModal && <Modal /> }  */}
+      {/* {isShowModal && <Modal setIsShowModal={setIsShowModal} />} */}
+      {isShowModal && <UserProfile setIsShowModal={setIsShowModal} /> } 
     </section>
   );
 };

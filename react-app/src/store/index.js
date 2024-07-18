@@ -1,6 +1,6 @@
 // import { createStore, applyMiddleware } from "redux";
 // import { thunk } from "redux-thunk";
-import reducer from "../reducer";
+import reducer from "../store/reducer";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 // const rootReducer = combineReducers({reducer})

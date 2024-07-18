@@ -1,0 +1,47 @@
+.profile {
+  $self: &;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #8e8e8e50;
+  
+  &__wrapper {
+    padding: 50px 40px;
+    height: auto;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    width: 500px;
+    
+    
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+
+
+  &__input {
+    margin: 10px 0 20px;
+    width: 100%;
+    border: 3px solid #49a799;
+    border-radius: 25px;
+    padding: 10px 15px;
+  }
+
+  &__actions {
+    text-align: center;
+  }
+
+
+
+  &_black {
+    #{$self}__input {
+      background-color: #453e45;
+      border: 3px solid #ffffff;
+      color: #ffffff;
+    }
+  }
+}

@@ -15,6 +15,8 @@ import {
   POST_USER_DATA,
   REQUEST_POST,
   RECEIVED_POST,
+  RECEIVED_TOKEN,
+  LOGOUT,
 } from "../actions";
 
 const initialState = {
@@ -38,6 +40,7 @@ const initialState = {
     loaded: false,
     errors: {},
   },
+  token: null,
 }; // создаем начальное значение state
 
 const reducer = (state = initialState, action) => {
@@ -213,6 +216,20 @@ const reducer = (state = initialState, action) => {
           loaded: true,
         },
       };
+
+
+      case RECEIVED_TOKEN:
+        return {
+          ...state,
+          token: action.payload,
+        };
+
+
+        case LOGOUT:
+          return {
+            ...state,
+            token: null
+          };
 
     default:
       return state;

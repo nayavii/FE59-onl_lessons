@@ -1,11 +1,11 @@
 import { memo } from "react";
 import { useSelector } from "react-redux";
 import "./index.scss";
-import { getBlackTheme } from "../../selectors";
+import { getBlackTheme } from "../../store/selectors";
 
-const View = ({ title, isOutlineButton, className='', onClick }) => {
+const View = ({ title, isOutlineButton, className = "", onClick }) => {
   const isBlackTheme = useSelector(getBlackTheme);
-// export const Button = ({ title, isOutlineButton, className, onClick }) => {
+  // export const Button = ({ title, isOutlineButton, className, onClick }) => {
   // const [isActiveBtn, setIsActiveBtn] = useState(false);
   // console.log(isActiveBtn); //false -- содержит начальное значение
   // console.log(setIsActiveBtn); //это функция
@@ -16,9 +16,12 @@ const View = ({ title, isOutlineButton, className='', onClick }) => {
     className += " button_fill";
   }
 
-
   return (
-    <button type="button" className={`button  ${isBlackTheme ? "button_black" : ""} ${className}`} onClick={onClick}>
+    <button
+      type="button"
+      className={`button  ${isBlackTheme ? "button_black" : ""} ${className}`}
+      onClick={onClick}
+    >
       {title}
     </button>
   );

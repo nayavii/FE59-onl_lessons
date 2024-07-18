@@ -8,13 +8,13 @@ import {
   dislikeAction,
   favoriteAction,
   addPostByIdAction,
-} from "../../actions";
+} from "../../store/actions";
 import likeIcon from "./images/like_icon.svg";
 import dislikeIcon from "./images/dislike_icon.svg";
 import saveIcon from "./images/save_icon.svg";
 import optionsIcon from "./images/options_icon.png";
 import "./index.scss";
-import { getBlackTheme, getImage } from "../../selectors";
+import { getBlackTheme, getImage } from "../../store/selectors";
 
 export const Post = ({ size, post, index }) => {
   const dispatch = useDispatch();

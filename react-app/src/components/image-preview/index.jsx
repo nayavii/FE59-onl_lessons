@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { DELETE_IMAGE_ACTION } from "../../actions";
+
 import { Button } from "../button";
 import "./index.scss";
-import { getBlackTheme, getImage } from "../../selectors";
+import { getBlackTheme, getImage } from "../../store/selectors";
+import { DELETE_IMAGE_ACTION } from "../../store/actions";
+
 
 export const ImagePreview = () => {
   const isBlackTheme = useSelector(getBlackTheme);

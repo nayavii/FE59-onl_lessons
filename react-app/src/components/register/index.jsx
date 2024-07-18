@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../button";
-import { getBlackTheme, getUser } from "../../selectors";
+
 import { RegisterSuccess } from "../successRegister";
 import "./index.scss";
-import { registerMiddlewareActions } from "../../actions";
+
+import { getBlackTheme, getUser } from "../../store/selectors";
+import { registerMiddlewareActions } from "../../store/actions";
+
 
 export const Register = () => {
   // const {isBlackTheme} = useContext(MyContext);

@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../button";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
-import { getBlackTheme } from "../../selectors";
+import { getBlackTheme } from "../../store/selectors";
+import { loginMiddlewareActions } from "../../store/actions";
+
 
 export const Login = () => {
   const isBlackTheme = useSelector(getBlackTheme);
@@ -14,6 +16,7 @@ export const Login = () => {
   console.log(values);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const inputRefName = useRef(null); // {current: null}
 
@@ -32,6 +35,7 @@ export const Login = () => {
 
   const handleLogin = () => {
     console.log("Отправляем все данные в values на сервер: ", values);
+    dispatch(loginMiddlewareActions(values))
     navigate("/loginSuccess");
   };
 

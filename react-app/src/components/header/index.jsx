@@ -1,15 +1,21 @@
-import { useSelector } from "react-redux";
+import "./index.scss";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../button";
 import { ModeButton } from "../mode-btn";
 import Logo from "./images/logo.png";
 import LogoWhite from "./images/logo_white.png";
-import "./index.scss";
-import { getBlackTheme } from "../../selectors";
+import Person from "./images/person.svg";
+import PersonWhite from "./images/person-white.svg";
+import { getBlackTheme } from "../../store/selectors";
+import { getToken, getUserInfo, LOGOUT_ACTION } from "../../store/actions";
 
-export const Header = () => {
+export const Header = ({setIsShowModal}) => {
   const isBlackTheme = useSelector(getBlackTheme);
+  const userToken = useSelector((state) => state.token);
+  console.log(userToken);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSingInClick = () => {
     navigate("login");
@@ -18,6 +24,17 @@ export const Header = () => {
   const handleRegister = () => {
     navigate("register");
   };
+
+  const handleLogout = () => {
+    dispatch(LOGOUT_ACTION);
+    navigate("/");
+  };
+
+  const getProfile = () => {
+    dispatch(getUserInfo(userToken.access));
+    setIsShowModal(true)
+    
+  }
 
   return (
     <header className={`header ${isBlackTheme ? "header_black" : ""}`}>
@@ -72,17 +89,36 @@ export const Header = () => {
           </nav>
 
           <div className="header__btn">
-            <Button
-              title={"Sing in"}
-              onClick={handleSingInClick}
-              isOutlineButton={false}
-            />
-            <Button
-              title={"Sing Up"}
-              onClick={handleRegister}
-              isOutlineButton={true}
-            />
-            <ModeButton />
+            {userToken ? (
+              <>
+                <img
+                  className="header__icon"
+                  src={isBlackTheme ? PersonWhite : Person}
+                  alt="Logo"
+                  onClick={getProfile}
+                />
+                <ModeButton />
+                <Button
+                  title={"Log out"}
+                  onClick={handleLogout}
+                  isOutlineButton={true}
+                />
+              </>
+            ) : (
+              <>
+                <Button
+                  title={"Sing in"}
+                  onClick={handleSingInClick}
+                  isOutlineButton={false}
+                />
+                <Button
+                  title={"Sing Up"}
+                  onClick={handleRegister}
+                  isOutlineButton={true}
+                />
+                <ModeButton />
+              </>
+            )}
           </div>
         </div>
       </div>

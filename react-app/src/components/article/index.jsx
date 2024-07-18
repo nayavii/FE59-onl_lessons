@@ -5,13 +5,13 @@ import { postsData } from "../posts/mock-data.js";
 import { Spinner } from "../spinner/index.jsx";
 import "./index.scss";
 import {
-  addPostByIdMiddlewareActions,
+  getPostByIdMiddlewareActions,
   addPostsMiddlewareActions,
   DELETE_POST_ACTION,
   REQUEST_POST_ACTION,
-} from "../../actions/index.js";
+} from "../../store/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
-import { getPost, getTab } from "../../selectors/index.js";
+import { getPost, getTab } from "../../store/selectors/index.js";
 
 export const Article = () => {
   const { postId } = useParams();
@@ -25,15 +25,15 @@ export const Article = () => {
   const tab = useSelector(getTab);
 
   useEffect(() => {
-    dispatch(addPostByIdMiddlewareActions(postId));
+    dispatch(getPostByIdMiddlewareActions(postId));
   }, [dispatch, postId]);
 
   const handleClick = () => {
-    dispatch(DELETE_POST_ACTION)
+    dispatch(DELETE_POST_ACTION);
     // navigate("/blog");
     // navigate(-1); // возврат на предыдущую страницу
     // navigate('/blog/all'); // возврат на предыдущую страницу
-    navigate(`/blog/${tab}`)
+    navigate(`/blog/${tab}`);
   };
 
   if (!post) {

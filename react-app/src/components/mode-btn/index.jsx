@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { CHANGE_THEME_ACTION } from '../../actions';
+
 import sun from './images/sun.svg';
 import moon from './images/moon.svg';
 import './index.scss';
-import { getBlackTheme } from '../../selectors';
+import { getBlackTheme } from '../../store/selectors';
+import { CHANGE_THEME_ACTION } from '../../store/actions';
+
 
 export const ModeButton = () => {
   const dispatch = useDispatch();

@@ -7,12 +7,16 @@ import "./index.scss";
 import {
   addImagesAction,
   addPostSAction,
-  addPostsMiddlewareActions,
+  getPostsMiddlewareActions,
   changeTabAction,
   REQUEST_POSTS_ACTION,
-} from "../../actions/index.js";
+} from "../../store/actions/index.js";
 import { Spinner } from "../spinner/index.jsx";
-import { getBlackTheme, getPosts, getTab } from "../../selectors/index.js";
+import {
+  getBlackTheme,
+  getPosts,
+  getTab,
+} from "../../store/selectors/index.js";
 
 export const Posts = () => {
   const { filter } = useParams();
@@ -30,8 +34,7 @@ export const Posts = () => {
   useEffect(() => {
     dispatch(changeTabAction(filter));
 
-    dispatch(addPostsMiddlewareActions())
-
+    dispatch(getPostsMiddlewareActions());
   }, []);
 
   const isAll = tab === "all";

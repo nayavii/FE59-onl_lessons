@@ -1,16 +1,15 @@
+import "./index.scss";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { DELETE_POST_ACTION } from "../../actions";
 import { Button } from "../button";
-import "./index.scss";
-import { getBlackTheme, getPost } from "../../selectors";
+import { getBlackTheme, getPost } from "../../store/selectors";
+import { DELETE_POST_ACTION } from "../../store/actions";
 
 export const PostPreview = () => {
   const isBlackTheme = useSelector(getBlackTheme);
   const post = useSelector(getPost);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
 
   const handlePreviewClose = () => {
     dispatch(DELETE_POST_ACTION);
