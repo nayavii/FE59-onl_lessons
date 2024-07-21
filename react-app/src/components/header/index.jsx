@@ -8,14 +8,17 @@ import LogoWhite from "./images/logo_white.png";
 import Person from "./images/person.svg";
 import PersonWhite from "./images/person-white.svg";
 import { getBlackTheme } from "../../store/selectors";
-import { getToken, getUserInfo, LOGOUT_ACTION } from "../../store/actions";
+import { getToken, getUserInfo, getUserInfoAction, LOGOUT_ACTION } from "../../store/actions";
 
 export const Header = ({setIsShowModal}) => {
   const isBlackTheme = useSelector(getBlackTheme);
-  const userToken = useSelector((state) => state.token);
-  console.log(userToken);
+  const user = useSelector((state) => state.user.content);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const isAuth = localStorage.getItem('isAuth');
+
+
 
   const handleSingInClick = () => {
     navigate("login");
@@ -27,11 +30,13 @@ export const Header = ({setIsShowModal}) => {
 
   const handleLogout = () => {
     dispatch(LOGOUT_ACTION);
+    localStorage.setItem("isAuth", false);
     navigate("/");
   };
 
   const getProfile = () => {
-    dispatch(getUserInfo(userToken.access));
+    dispatch(getUserInfoAction(navigate));
+    
     setIsShowModal(true)
     
   }
@@ -89,7 +94,7 @@ export const Header = ({setIsShowModal}) => {
           </nav>
 
           <div className="header__btn">
-            {userToken ? (
+            {isAuth ? (
               <>
                 <img
                   className="header__icon"
@@ -99,7 +104,7 @@ export const Header = ({setIsShowModal}) => {
                 />
                 <ModeButton />
                 <Button
-                  title={"Log out"}
+                  title="Log out"
                   onClick={handleLogout}
                   isOutlineButton={true}
                 />
@@ -107,12 +112,12 @@ export const Header = ({setIsShowModal}) => {
             ) : (
               <>
                 <Button
-                  title={"Sing in"}
+                  title="Sing in"
                   onClick={handleSingInClick}
                   isOutlineButton={false}
                 />
                 <Button
-                  title={"Sing Up"}
+                  title="Sing Up"
                   onClick={handleRegister}
                   isOutlineButton={true}
                 />

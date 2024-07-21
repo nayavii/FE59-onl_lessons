@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { postsData } from "../../components/posts/mock-data";
+import { fetchActivation, fetchRegister, fetchToken } from "../../api/auth";
+import { fetchUserInfo } from "../../api/user";
 
 export const LIKE = "LIKE";
 export const DISLIKE = "DISLIKE";
@@ -17,8 +19,8 @@ export const POST_USER_DATA = "POST_USER_DATA";
 export const RECEIVED_USER_DATA = "RECEIVED_USER_DATA";
 export const REQUEST_POST = "REQUEST_POST";
 export const RECEIVED_POST = "RECEIVED_POST";
-export const  RECEIVED_TOKEN = "RECEIVED_TOKEN";
-export const  LOGOUT = "LOGOUT";
+export const RECEIVED_TOKEN = "RECEIVED_TOKEN";
+export const LOGOUT = "LOGOUT";
 
 export const CHANGE_THEME_ACTION = { type: CHANGE_THEME };
 export const DELETE_POST_ACTION = { type: DELETE_POST };
@@ -54,8 +56,6 @@ export const addPostByIdAction = (post) => ({
 
 export const getToken = (token) => ({ type: RECEIVED_TOKEN, payload: token });
 
-
-
 const URL = "https://studapi.teachmeskills.by";
 
 export const getPostsMiddlewareActions = () => {
@@ -76,32 +76,6 @@ export const getPostsMiddlewareActions = () => {
   };
 };
 
-export const registerMiddlewareActions = ({
-  name,
-  email,
-  password,
-  course_group,
-}) => {
-  return (dispatch) => {
-    dispatch(POST_USER_DATA_ACTION);
-
-    fetch(`${URL}/auth/users/`, {
-      method: "POST",
-      body: JSON.stringify({
-        username: name,
-        email,
-        password,
-        course_group,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => dispatch(addUserDataAction(json)));
-  };
-};
-
 export const getPostByIdMiddlewareActions = (postId) => {
   return (dispatch) => {
     dispatch(REQUEST_POST_ACTION);
@@ -119,58 +93,44 @@ export const getPostByIdMiddlewareActions = (postId) => {
   };
 };
 
-export const activationEmailMiddlewareActions = (uid, token ) => {
-  return (dispatch) => {
-    // dispatch(POST_USER_DATA_ACTION);
+// user
 
-    fetch(`${URL}/auth/users/activation`, {
-      method: "POST",
-      body: JSON.stringify({
-        uid,
-        token,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+export const getUserInfoAction = (navigate) => {
+  return (dispatch) => {
+    fetchUserInfo(navigate).then((response) => dispatch(addUserDataAction(response)));
   };
 };
 
-export const loginMiddlewareActions = ({ email, password }) => {
-  return (dispatch) => {
-    // dispatch(POST_USER_DATA_ACTION);
+// auth
 
-    fetch(`${URL}/auth/jwt/create/`, {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => dispatch(getToken(json)));
+export const registerMiddlewareActions = ({
+  name,
+  email,
+  password,
+  course_group,
+}) => {
+  return (dispatch) => {
+    dispatch(POST_USER_DATA_ACTION);
+
+    fetchRegister(name, email, password, course_group).then((json) =>
+      dispatch(addUserDataAction(json))
+    );
   };
 };
 
-export const getUserInfo = (token) => {
+export const loginMiddlewareActions = ({ email, password },navigate) => {
   return (dispatch) => {
-    
-
-    fetch(`${URL}/auth/users/me/`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        dispatch(addUserDataAction(json));
+    fetchToken(email, password).then(() => {
+      fetchUserInfo(navigate).then((response) => {
+        console.log(response);
+        dispatch(addUserDataAction(response));
       });
+    });
+  };
+};
+
+export const activationEmailMiddlewareActions = (uid, token) => {
+  return (dispatch) => {
+    fetchActivation(uid, token);
   };
 };

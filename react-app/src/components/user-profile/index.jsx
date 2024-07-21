@@ -12,6 +12,10 @@ export const UserProfile = ({setIsShowModal}) => {
     setIsShowModal(false)
   };
 
+  if (!user.content.username) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <div className={`profile ${isBlackTheme ? "profile_black" : ""}`}>
       <div className="container">
@@ -46,7 +50,7 @@ export const UserProfile = ({setIsShowModal}) => {
           </label>
           <div className="profile__actions">
             <Button
-              title={"Cancel"}
+              title="Cancel"
               onClick={handleClose}
               isOutlineButton={false}
             />

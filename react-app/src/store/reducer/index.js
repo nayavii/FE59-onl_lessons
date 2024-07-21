@@ -35,7 +35,7 @@ const initialState = {
   images: [],
   tab: "all",
   user: {
-    content: {},
+    content: null,
     loading: false,
     loaded: false,
     errors: {},
@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         post: {
           ...state.post,
-          content: null
+          content: null,
         },
       };
 
@@ -183,10 +183,8 @@ const reducer = (state = initialState, action) => {
 
     case RECEIVED_USER_DATA:
       const isError = !action.payload.id;
-
       return {
         ...state,
-        // posts: action.payload,
         user: {
           ...state.user,
           content: isError ? {} : action.payload,
@@ -217,19 +215,20 @@ const reducer = (state = initialState, action) => {
         },
       };
 
+    case RECEIVED_TOKEN:
+      return {
+        ...state,
+        token: action.payload,
+      };
 
-      case RECEIVED_TOKEN:
-        return {
-          ...state,
-          token: action.payload,
-        };
-
-
-        case LOGOUT:
-          return {
-            ...state,
-            token: null
-          };
+    case LOGOUT:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          content: null,
+        },
+      };
 
     default:
       return state;

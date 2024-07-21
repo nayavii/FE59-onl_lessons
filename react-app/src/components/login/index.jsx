@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.scss";
 import { getBlackTheme } from "../../store/selectors";
-import { loginMiddlewareActions } from "../../store/actions";
+import { getUserInfoAction, loginMiddlewareActions } from "../../store/actions";
 
 
 export const Login = () => {
@@ -34,8 +34,8 @@ export const Login = () => {
   };
 
   const handleLogin = () => {
-    console.log("Отправляем все данные в values на сервер: ", values);
-    dispatch(loginMiddlewareActions(values))
+    dispatch(loginMiddlewareActions(values, navigate))
+    dispatch(getUserInfoAction())
     navigate("/loginSuccess");
   };
 
