@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../button';
+import { Button } from '../../components/button';
 import './index.scss';
 import { useSelector } from 'react-redux';
 import { getUser } from '../../store/selectors';

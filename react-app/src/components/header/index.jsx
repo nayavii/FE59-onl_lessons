@@ -8,17 +8,20 @@ import LogoWhite from "./images/logo_white.png";
 import Person from "./images/person.svg";
 import PersonWhite from "./images/person-white.svg";
 import { getBlackTheme } from "../../store/selectors";
-import { getToken, getUserInfo, getUserInfoAction, LOGOUT_ACTION } from "../../store/actions";
+import {
+  getToken,
+  getUserInfo,
+  getUserInfoAction,
+  LOGOUT_ACTION,
+} from "../../store/actions";
 
-export const Header = ({setIsShowModal}) => {
+export const Header = ({ setIsShowModal }) => {
   const isBlackTheme = useSelector(getBlackTheme);
   const user = useSelector((state) => state.user.content);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const isAuth = localStorage.getItem('isAuth');
-
-
+  const isAuth = JSON.parse(localStorage.getItem("isAuth"));
 
   const handleSingInClick = () => {
     navigate("login");
@@ -31,15 +34,16 @@ export const Header = ({setIsShowModal}) => {
   const handleLogout = () => {
     dispatch(LOGOUT_ACTION);
     localStorage.setItem("isAuth", false);
+    localStorage.setItem("accessToken", null);
+    localStorage.setItem("refreshToken", null);
     navigate("/");
   };
 
   const getProfile = () => {
     dispatch(getUserInfoAction(navigate));
-    
-    setIsShowModal(true)
-    
-  }
+
+    setIsShowModal(true);
+  };
 
   return (
     <header className={`header ${isBlackTheme ? "header_black" : ""}`}>
@@ -90,6 +94,13 @@ export const Header = ({setIsShowModal}) => {
                   Game
                 </button> */}
               </li>
+              {isAuth && (
+                <li className="header__item">
+                  <Link to="/create-post" className="header__btn">
+                    Create Post
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
 

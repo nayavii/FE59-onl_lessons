@@ -1,4 +1,4 @@
-import { Button } from "../../button";
+import { Button } from "../../../components/button";
 import "./index.scss";
 
 export const Info = ({ status, history, jumpTo }) => {

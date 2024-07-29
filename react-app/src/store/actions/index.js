@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { postsData } from "../../components/posts/mock-data";
 import { fetchActivation, fetchRegister, fetchToken } from "../../api/auth";
 import { fetchUserInfo } from "../../api/user";
+import { fetchPosts } from "../../api/posts";
 
 export const LIKE = "LIKE";
 export const DISLIKE = "DISLIKE";
@@ -34,9 +35,10 @@ export const likeAction = (id) => ({ type: LIKE, id });
 export const dislikeAction = (id) => ({ type: DISLIKE, id });
 export const favoriteAction = (id) => ({ type: FAVORITE, id });
 export const addPostAction = (post) => ({ type: ADD_POST, payload: post }); // action creator
-export const addPostSAction = (posts) => ({
+export const addPostsAction = (posts, count) => ({
   type: RECEIVED_POSTS,
   payload: posts,
+  count,
 });
 export const addImageAction = (image) => ({ type: ADD_IMAGE, payload: image });
 export const addImagesAction = (images) => ({
@@ -56,23 +58,14 @@ export const addPostByIdAction = (post) => ({
 
 export const getToken = (token) => ({ type: RECEIVED_TOKEN, payload: token });
 
-const URL = "https://studapi.teachmeskills.by";
 
-export const getPostsMiddlewareActions = () => {
+
+export const getPostsMiddlewareActions = (order, limit, searchValue, page) => {
   return (dispatch) => {
     dispatch(REQUEST_POSTS_ACTION);
 
-    fetch(`${URL}/blog/posts/`)
-      .then((response) => response.json())
-      .then(({ results }) => {
-        dispatch(addPostSAction(postsData));
-        // dispatch(addPostSAction(results));
-        dispatch(addImagesAction(postsData.map(({ image }) => image)));
-      })
-      .catch((error) => {
-        console.log(error);
-        //dispatch(ERROR_POSTS_ACTION);
-      });
+    fetchPosts(dispatch, order, limit, searchValue, page)
+
   };
 };
 

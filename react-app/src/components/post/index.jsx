@@ -1,3 +1,4 @@
+import "./index.scss";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,7 +14,6 @@ import likeIcon from "./images/like_icon.svg";
 import dislikeIcon from "./images/dislike_icon.svg";
 import saveIcon from "./images/save_icon.svg";
 import optionsIcon from "./images/options_icon.png";
-import "./index.scss";
 import { getBlackTheme, getImage } from "../../store/selectors";
 
 export const Post = ({ size, post, index }) => {
@@ -55,7 +55,7 @@ export const Post = ({ size, post, index }) => {
               {post.title}
             </Link>
 
-            <p className="post__text">{post.text}</p>
+            <p className="post__text">{post.description}</p>
           </div>
 
           <div className="post__img" onClick={handleImage}>

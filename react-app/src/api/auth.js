@@ -15,14 +15,15 @@ export const fetchToken = (email, password) => {
   })
     .then((response) => response.json())
     .then((response) => {
-      console.log(response);
       if (response.access && response.refresh) {
         localStorage.setItem("accessToken", response.access);
         localStorage.setItem("refreshToken", response.refresh);
         localStorage.setItem("isAuth", true);
       }
     })
-    .catch((error) => console.log(error));
+    .catch((e) => {
+      localStorage.setItem("isAuth", false);
+    });
 };
 
 export const fetchActivation = (uid, token) => {
@@ -41,7 +42,6 @@ export const fetchActivation = (uid, token) => {
 };
 
 export const fetchRegister = (name, email, password, course_group) => {
-  
   return fetch(`${URL}/auth/users/`, {
     method: "POST",
     body: JSON.stringify({
@@ -53,7 +53,5 @@ export const fetchRegister = (name, email, password, course_group) => {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
-  })
-    .then((response) => response.json())
-    
+  }).then((response) => response.json());
 };

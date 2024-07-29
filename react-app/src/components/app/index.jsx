@@ -17,17 +17,17 @@ export const App = () => {
   //   setIsBlackTheme((prevState) => !prevState);
   // };
 
-  useEffect(() => {
-    fetchUserInfo().then((response) => {
-      console.log(response);
-      // localStorage.setItem("isAuth", response.id ? true : false);
-      localStorage.setItem("isAuth", !!response?.id);
+  // useEffect(() => {
+  //   fetchUserInfo().then((response) => {
+  //     console.log(response);
+  //     // localStorage.setItem("isAuth", response.id ? true : false);
+  //     localStorage.setItem("isAuth", !!response?.id);
 
-      if (response?.id) {
-        dispatch(addUserDataAction(response));
-      }
-    });
-  }, []); // то же что и componentDidMount;
+  //     if (response?.id) {
+  //       dispatch(addUserDataAction(response));
+  //     }
+  //   });
+  // }, []); // то же что и componentDidMount;
 
   // useEffect(() => {
   //   // ..что-то что должно выполняться только когда меняется page

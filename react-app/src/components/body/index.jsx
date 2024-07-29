@@ -1,20 +1,21 @@
 import "./index.scss";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { BlogPage } from "../blog-page";
+import { BlogPage } from "../../pages/blog-page";
 import { Modal } from "../modal";
-import { Login } from "../login";
-import { LoginSuccess } from "../successLogin";
-import { Article } from "../article";
-import { Register } from "../register";
-import { RegisterSuccess } from "../successRegister";
-import { Game } from "../game/main";
-import { NotFound } from "../not-found";
-import { MainPage } from "../main-page";
-import { TodosPage } from "../todos-page";
-import { ActivationEmailPage } from "../activation-email";
+import { Login } from "../../pages/login";
+import { LoginSuccess } from "../../pages/successLogin";
+import { Article } from "../../pages/article";
+import { Register } from "../../pages/register";
+import { RegisterSuccess } from "../../pages/successRegister";
+import { Game } from "../../pages/game/main";
+import { NotFound } from "../../pages/not-found";
+import { MainPage } from "../../pages/main-page";
+import { TodosPage } from "../../pages/todos-page";
+import { ActivationEmailPage } from "../../pages/activation-email";
 import { getBlackTheme } from "../../store/selectors";
 import { UserProfile } from "../user-profile";
+import { CreatePost } from "../../pages/create-post";
 
 export const Body = ({ isShowModal, setIsShowModal }) => {
   const isBlackTheme = useSelector(getBlackTheme);
@@ -43,6 +44,7 @@ export const Body = ({ isShowModal, setIsShowModal }) => {
         <Route path="loginSuccess" element={<LoginSuccess />} />
         <Route path="registerSuccess" element={<RegisterSuccess />} />
         <Route path="activate/:uid/:token" element={<ActivationEmailPage />} />
+        <Route path="create-post" element={<CreatePost />} />
         {/* <Route path="my-profile" element={<UserProfile />} /> */}
       </Routes>
       {/* {isShowModal && <Modal setIsShowModal={setIsShowModal} />} */}

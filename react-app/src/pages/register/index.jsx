@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../button";
+import { Button } from "../../components/button";
 
 import { RegisterSuccess } from "../successRegister";
 import "./index.scss";
@@ -73,7 +73,7 @@ export const Register = () => {
     <div className={`register ${isBlackTheme ? "register_black" : ""}`}>
       <div className="container">
         <div className="register__wrapper">
-          {user.content.id ? (
+          {user.content?.id ? (
             <RegisterSuccess />
           ) : (
             <>

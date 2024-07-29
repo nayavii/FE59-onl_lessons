@@ -1,8 +1,8 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Button } from "../button";
+import { Button } from "../../components/button/index.jsx";
 import { useEffect, useState } from "react";
-import { postsData } from "../posts/mock-data.js";
-import { Spinner } from "../spinner/index.jsx";
+import { postsData } from "../../components/posts/mock-data.js";
+import { Spinner } from "../../components/spinner/index.jsx";
 import "./index.scss";
 import {
   getPostByIdMiddlewareActions,

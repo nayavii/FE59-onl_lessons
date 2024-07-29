@@ -15,8 +15,6 @@ export const fetchUserInfo = (navigate) => {
         return refreshToken(URL, options, navigate);
       }
 
-      console.log(response);
-
       return response.json();
     })
     .catch((e) => console.log(e));
@@ -27,35 +25,35 @@ export const refreshToken = (receivedUrl, navigate, options) => {
 
   return fetch(`${URL}/auth/jwt/refresh/`, {
     method: "POST",
-    body: JSON.stringify({refresh: token}),
+    body: JSON.stringify({ refresh: token }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
   })
-  .then(async (response) => {
-    if (response.status === 401) {
-      localStorage.setItem("isAuth", false);
+    .then(async (response) => {
+      if (response.status === 401) {
+        localStorage.setItem("isAuth", false);
 
-      if (navigate) {
-        navigate("login");
-      } else {
-        window.location.href = window.location.origin + "/login";
+        if (navigate) {
+          navigate("/login");
+        } else {
+          window.location.href = window.location.origin + "/login";
+        }
+
+        return null;
       }
 
-      return null;
-    }
+      const token = await response.json();
 
-    const token = await response.json();
+      localStorage.setItem("accessToken", token.access);
 
-    localStorage.setItem("accessToken", token.access);
-
-    return fetch(receivedUrl, {
-      ...options,
-      headers: {
-        ...options.headers,
-        Authorization: `Bearer ${token.access}`,
-      },
-    }).then((res) => res.json());
-  })
-  .catch((e) => console.log(e));
+      return fetch(receivedUrl, {
+        ...options,
+        headers: {
+          ...options.headers,
+          Authorization: `Bearer ${token.access}`,
+        },
+      }).then((res) => res.json());
+    })
+    .catch((e) => console.log(e));
 };

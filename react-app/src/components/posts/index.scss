@@ -5,14 +5,15 @@
     display: grid;
     grid-gap: 10px;
     grid-template-areas: 
-    'post-0 post-0 post-5'
-    'post-0 post-0 post-6'
-    'post-1 post-2 post-7'
-    'post-1 post-2 post-8'
-    'post-3 post-4 post-9'
-    'post-3 post-4 post-10'
+    'post-0 post-1 post-2'
+    'post-0 post-1 post-3'
+    'post-4 post-5 post-6'
+    'post-4 post-5 post-7'
+    'post-8 post-9 post-10'
+    'post-8 post-9 post-11'
     ;
     grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 10px;
 
     &_flex {
       display: flex;
@@ -40,13 +41,34 @@
     
   }
 
-  &__search {
+  &__nav-search {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
     margin: 10px 0 20px;
+  }
+
+  &__search {
+
     width: 100%;
     border: 3px solid #49a799;
     border-radius: 25px;
     padding: 10px 15px;
 
+  }
+
+  &__sort {
+    padding: 10px 35px;
+    background-color: #49a799;
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 20px;
+  }
+
+  &__load-more {
+    text-align: center;
+    margin-top: 50px;
   }
 
   &_black {

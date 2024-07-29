@@ -27,7 +27,7 @@ const initialState = {
     loaded: false,
   },
   posts: {
-    content: null,
+    content: [],
     loading: false,
     loaded: false,
   },
@@ -75,6 +75,7 @@ const reducer = (state = initialState, action) => {
           loading: true,
           loaded: false,
           error: null,
+          count: 0,
         },
       };
 
@@ -84,8 +85,11 @@ const reducer = (state = initialState, action) => {
         // posts: action.payload,
         posts: {
           content: action.payload,
+          // content: [...state.posts.content, ...action.payload],
           loading: false,
           loaded: true,
+          count: action.count
+          
         },
       };
 
@@ -182,7 +186,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case RECEIVED_USER_DATA:
-      const isError = !action.payload.id;
+      const isError = !action.user?.id;
       return {
         ...state,
         user: {

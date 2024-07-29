@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Post } from "../post/index.jsx";
-import { postsData } from "./mock-data.js";
+// import { postsData } from "./mock-data.js";
 import "./index.scss";
 import {
   addImagesAction,
@@ -17,159 +17,98 @@ import {
   getPosts,
   getTab,
 } from "../../store/selectors/index.js";
+import { BlogNavBar } from "../blog-nav-bar/index.jsx";
+import { Button } from "../button/index.jsx";
+import { NoSearchResult } from "../no-search-result/index.jsx";
+import { Pagination } from "../pagination/index.jsx";
+
+const LIMIT = 12;
 
 export const Posts = () => {
+  console.log(LIMIT);
   const { filter } = useParams();
   const isBlackTheme = useSelector(getBlackTheme);
+
   // const [posts, setPosts] = useState([]);
   // const [filterValue, setFilterValue] = useState(filter);
-  const [searchValue, setSearchValue] = useState("");
-  const navigate = useNavigate();
+  const [order, setOrder] = useState("title");
   const dispatch = useDispatch();
-
   const posts = useSelector(getPosts);
-  const tab = useSelector(getTab);
+  const [page, setPage] = useState(1);
 
   //в реальной жизни
   useEffect(() => {
-    dispatch(changeTabAction(filter));
+    // dispatch(changeTabAction(filter));
 
-    dispatch(getPostsMiddlewareActions());
+    dispatch(getPostsMiddlewareActions(order, LIMIT, "", page));
   }, []);
 
-  const isAll = tab === "all";
-  const isFavorites = tab === "favorite";
-  const isPopular = tab === "popular";
-
-  // const filteredPosts = posts.filter((post) => {
-  //   const postsToSearch =
-  //     post.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-  //     post.text.toLowerCase().includes(searchValue.toLowerCase());
-
-  //   if (!postsToSearch) return false;
-
-  //   if (isAll) return post;
-  //   if (isFavorites) return post.favorites;
-  //   return post.popular;
-  // });
-
-  const handleClick = (path) => {
-    return () => {
-      dispatch(changeTabAction(path));
-      navigate(`/blog/${path}`);
-    };
+  const handleSearch = (searchValue, order) => {
+    dispatch(getPostsMiddlewareActions(order, LIMIT, searchValue, page));
+    setOrder(order);
+    setPage(1);
   };
 
-  // const handleAllClick = () => {
-  //   navigate("/blog/all");
-  //   setFilterValue("all");
-  // };
-
-  // const handleFavClick = () => {
-  //   navigate("/blog/favorites");
-  //   setFilterValue("favorite");
-  // };
-
-  // const handlePopClick = () => {
-  //   navigate("/blog/popular");
-  //   setFilterValue("popular");
-  // };
-
-  const handleSearchChange = (e) => {
-    setSearchValue(e.target.value);
+  const handleLoadMore = () => {
+    dispatch(getPostsMiddlewareActions(order, LIMIT, "", page + 1));
+    setPage((prevState) => prevState + 1);
   };
 
-  if (posts.loading || !posts.loaded) {
-    return <Spinner />;
-  }
+  console.log(posts.content);
+
+  const handleChangePage = (newPage) => {
+    setPage(newPage);
+    dispatch(getPostsMiddlewareActions(order, LIMIT, "", newPage));
+
+  };
 
   return (
     <section className={`posts  ${isBlackTheme ? "posts_black" : ""}`}>
       <div className="container">
-        <div className="posts__nav">
-          <button
-            className={`posts__nav-btn ${isAll ? "posts__nav-btn_active" : ""}`}
-            // onClick={handleAllClick}
-            onClick={handleClick("all")}
-          >
-            All
-          </button>
-          <button
-            className={`posts__nav-btn ${
-              isFavorites ? "posts__nav-btn_active" : ""
-            }`}
-            onClick={handleClick("favorite")}
-          >
-            My favorites
-          </button>
-          <button
-            className={`posts__nav-btn ${
-              isPopular ? "posts__nav-btn_active" : ""
-            }`}
-            onClick={handleClick("popular")}
-          >
-            Popular
-          </button>
-        </div>
+        <BlogNavBar handleSearch={handleSearch} setOrder={setOrder} order={order} />
 
-        <input
-          className="posts__search"
-          type="text"
-          placeholder="Search posts..."
-          value={searchValue}
-          onChange={handleSearchChange}
-        />
-
-        <div
+        {/* <div
           className={`posts__wrapper ${
             isFavorites || isPopular ? "posts__wrapper_flex" : ""
           }`}
-        >
-          {
-            /* {filteredPosts.map((item, index) => {
-            let size = "large";
+        > */}
 
-            if (isAll) {
-              if (index >= 1 && index <= 4) {
-                size = "medium";
-              } else if (index > 4) {
-                size = "small";
-              }
-            }
-            return <Post post={item} index={index} key={item.id} size={size} />;
-          })} */
+        {posts.content.map((item, index) => {
+          return (
+            <div className={`posts__wrapper `} key={index}>
+              {item.map((post, index) => {
+                return (
+                  <Post
+                    post={post}
+                    index={index}
+                    key={post.id}
+                    size={index <= 5 ? "medium" : "small"}
+                  />
+                );
+              })}
+            </div>
+          );
+        })}
 
-            posts.content?.reduce((result, post, index) => {
-              if (
-                isAll ||
-                (isFavorites && post.favorites) ||
-                (isPopular && post.popular)
-              ) {
-                if (
-                  post.title
-                    .toLowerCase()
-                    .includes(searchValue.toLowerCase()) ||
-                  post.text.toLowerCase().includes(searchValue.toLowerCase())
-                ) {
-                  let size = "large";
+        {!posts.content?.length && !posts.loading && <NoSearchResult />}
+        {posts.loading && <Spinner />}
 
-                  if (isAll) {
-                    if (index >= 1 && index <= 4) {
-                      size = "medium";
-                    } else if (index > 4) {
-                      size = "small";
-                    }
-                  }
-                  // Добавление отфильтрованных и модифицированных постов в аккумулятор
-                  result.push(
-                    <Post post={post} index={index} key={post.id} size={size} />
-                  );
-                }
-              }
-              return result;
-            }, [])
-          }
-        </div>
+        <Pagination
+          count={posts.count}
+          limit={LIMIT}
+          page={page}
+          handleChangePage={handleChangePage}
+        />
+
+        {/* {page * (LIMIT + 1) <= posts.count && (
+          <div className="posts__load-more">
+            <Button
+              title="Load more"
+              isOutlineButton={false}
+              onClick={handleLoadMore}
+            />
+          </div>
+        )} */}
       </div>
     </section>
   );

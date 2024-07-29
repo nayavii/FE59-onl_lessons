@@ -1,8 +1,8 @@
 import "./index.scss";
 import { useSelector } from "react-redux";
-import { Posts } from "../posts/index.jsx";
-import { PostPreview } from "../post-preview/index.jsx";
-import { ImagePreview } from "../image-preview/index.jsx";
+import { Posts } from "../../components/posts/index.jsx";
+import { PostPreview } from "../../components/post-preview/index.jsx";
+import { ImagePreview } from "../../components/image-preview/index.jsx";
 import { getImage, getPost } from "../../store/selectors/index.js";
 
 

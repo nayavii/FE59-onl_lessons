@@ -1,15 +1,13 @@
 .post {
   $self: &;
-  margin: 0 auto;
-  background-color: #53beae33;
-  padding: 30px 10px;
   width: auto;
+  padding: 15px;
+  background-color: #9ae2e4;
 
   &__wrapper {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   &__info {
@@ -17,46 +15,36 @@
   }
 
   &__date {
-    font-size: 16px;
-    color: #757575;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: gray;
   }
 
   &__title {
-    display: block;
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    color: #343434;
   }
 
   &__text {
     font-size: 18px;
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
+    color: gray;
   }
 
   &__img {
     width: 40%;
-    height: 250px;
+    cursor: pointer;
 
     img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      cursor: pointer;
+      object-fit: contain;
     }
   }
 
   &__actions {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin: 30px 0;
   }
 
   &__likes {
@@ -106,55 +94,17 @@
   }
 
   &_medium {
-    #{$self}__wrapper {
-      flex-direction: column-reverse;
-    }
-
     #{$self}__text {
-      // display: -webkit-box;
-      // overflow: hidden;
-      // -webkit-line-clamp: 2;
-      // -webkit-box-orient: vertical;
-      display: none;
-    }
-
-    #{$self}__info {
-      width: 100%;
-    }
-
-    #{$self}__img {
-      width: 100%;
-      height: 200px;
-    }
-
-    #{$self}__title {
-      font-size: 20px;
-      margin: 0;
-    }
-
-    #{$self}__actions {
-      margin: 10px 0;
-    }
-  }
-
-  &_small {
-    padding: 20px 10px;
-
-    #{$self}__text {
-      display: none;
-    }
-
-    #{$self}__date {
-      margin-bottom: 10px;
-    }
-
-    #{$self}__title {
-      font-size: 18px;
-      margin: 0;
       display: -webkit-box;
       overflow: hidden;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+    }
+  }
+
+  &_small {
+    #{$self}__text {
+      display: none;
     }
 
     #{$self}__info {
@@ -162,19 +112,11 @@
     }
 
     #{$self}__img {
-      width: 40%;
-      height: 80px;
-    }
-
-    #{$self}__actions {
-      margin: 0px 0 10px;
-    }
-
-    #{$self}__icon {
-      width: 20px;
-      height: 20px;
+      width: 20%;
     }
   }
+
+ 
 
   &_black {
     background-color: #6d6d6d;

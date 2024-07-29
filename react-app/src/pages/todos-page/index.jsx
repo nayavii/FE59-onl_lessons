@@ -1,4 +1,4 @@
-import { Todos } from "../todos";
+import { Todos } from "../../components/todos";
 
 
 export const TodosPage = () => {
