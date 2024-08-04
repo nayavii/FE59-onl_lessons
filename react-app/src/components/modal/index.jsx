@@ -30,17 +30,24 @@ export const Modal = ({ setIsShowModal }) => {
         <h4 className="modal__title">Sing in</h4>
         <label>
           Your email
-          <input type="email" name="email" className="modal__input" onInput={handleChange} />
+          <input
+            type="email"
+            name="email"
+            className="modal__input"
+            onInput={handleChange}
+          />
         </label>
 
-        <label>Your password</label>
-        <input
-          type="password"
-          name="password"
-          className="modal__input"
-          onInput={handleChange}
-        />
-        <select
+        <label>
+          Your password
+          <input
+            type="password"
+            name="password"
+            className="modal__input"
+            onInput={handleChange}
+          />
+        </label>
+        {/* <select
           id="modalCountry"
           name="country"
           className="modal__input"
@@ -56,7 +63,7 @@ export const Modal = ({ setIsShowModal }) => {
               </option>
             );
           })}
-        </select>
+        </select> */}
 
         <div className="modal__actions">
           <button className="modal__button modal__cancel" onClick={handleClose}>

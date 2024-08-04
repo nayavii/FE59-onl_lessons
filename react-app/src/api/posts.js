@@ -3,14 +3,17 @@ import { refreshToken } from "./user";
 
 const URL = "https://studapi.teachmeskills.by";
 
+export const getQueryParams = (order, limit, searchValue, offset) => {
+
+  return `?limit=${limit}&offset=${offset}${
+    searchValue ? `&search=${searchValue}` : ""
+  }&ordering=${order}`;
+};
+
 export const fetchPosts = (dispatch, order, limit, searchValue, page) => {
   const offset = Math.ceil((page - 1) * limit);
 
-  return fetch(
-    `${URL}/blog/posts/?limit=${limit}&offset=${offset}${
-      searchValue ? `&search=${searchValue}` : ""
-    }&ordering=${order}`
-  )
+  return fetch(`${URL}/blog/posts/${getQueryParams(order, limit, searchValue, offset)}`)
     .then((response) => response.json())
     .then(({ results, count }) => {
       console.log(results);
